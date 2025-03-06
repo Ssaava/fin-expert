@@ -28,14 +28,14 @@ export function Score() {
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto  aspect-square max-h-[250px]" // Increased height
+          className="mx-auto aspect-square max-h-[250px]"
         >
           <RadialBarChart
             data={chartData}
             startAngle={0}
             endAngle={160}
-            innerRadius={105} // Adjusted inner radius
-            outerRadius={180} // Adjusted outer radius
+            innerRadius={105}
+            outerRadius={180}
           >
             <PolarGrid
               gridType="circle"

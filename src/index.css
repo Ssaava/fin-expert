@@ -6,9 +6,14 @@
 
 @theme {
   --color-primary-500: #0074d4;
+  --color-primary-300: #0086fc1a;
   --color-gray-200: #f1f0ed;
+  --color-orange-500: #e67e22;
 }
 
+.gradient-bg {
+  background: linear-gradient(to bottom, #040012, #181426, #000052);
+}
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
