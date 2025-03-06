@@ -1,7 +1,9 @@
+import { Outlet } from "react-router";
+
 const LandingPageLayout = () => {
   return (
     <>
-      <div>LandingPageLayout</div>
+      <Outlet />
     </>
   );
 };

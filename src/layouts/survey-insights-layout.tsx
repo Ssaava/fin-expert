@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 
-const AuthLayout = () => {
+const SurveyInsightsLayout = () => {
   return (
     <>
       <Outlet />
@@ -8,4 +8,4 @@ const AuthLayout = () => {
   );
 };
 
-export default AuthLayout;
+export default SurveyInsightsLayout;
