@@ -18,7 +18,7 @@ const Header = () => {
 
         {/* Hamburger Menu Button */}
         <button
-          className="md:hidden text-gray-500 hover:text-gray-700"
+          className="md:hidden cursor-pointer text-gray-500 hover:text-gray-700"
           onClick={toggleMenu}
         >
           <svg
@@ -68,10 +68,10 @@ const Header = () => {
           <Link to="/">Contact Us</Link>
         </div>
         <div className="hidden md:flex gap-4 items-center">
-          <Button className="rounded-full bg-primary-500 p-6">
+          <Button className="cursor-pointer rounded-full bg-primary-500 p-6">
             Create Account
           </Button>
-          <Button className="rounded-full bg-gray-200 text-gray-900 hover:text-white p-6">
+          <Button className="cursor-pointer rounded-full bg-gray-200 text-gray-900 hover:text-white p-6">
             Login
           </Button>
         </div>
