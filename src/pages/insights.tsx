@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { BsBuildingAdd } from "react-icons/bs";
 import { FaChrome } from "react-icons/fa6";
 import { Link } from "react-router";
@@ -15,7 +14,7 @@ const Insights = () => {
             personalized recommendations to maximize your impact.
           </p>
           <Link
-            to={"survey"}
+            to={"/survey"}
             className="w-fit mx-auto bg-primary-500 py-3 font-bold px-8 flex items-center gap-2 text-white group rounded-full hover:bg-black duration-200"
           >
             <BsBuildingAdd /> Take Assessment

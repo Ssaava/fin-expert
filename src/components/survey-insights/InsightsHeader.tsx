@@ -3,6 +3,14 @@ import { CiSettings } from "react-icons/ci";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import { LiaSignOutAltSolid } from "react-icons/lia";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 const InsightsHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -101,12 +109,33 @@ const InsightsHeader = () => {
           <button>
             <CiSettings className="text-2xl" />
           </button>
-          <button>
-            <Avatar className="size-10">
-              <AvatarImage src={"https://github.com/shadcn.png"} />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </button>
+
+          <Popover>
+            <PopoverTrigger>
+              <Avatar className="size-10">
+                <AvatarImage src={"https://github.com/shadcn.png"} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </PopoverTrigger>
+            <PopoverContent className="md:mr-20 mt-6">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <h3 className="font-bold">John Doe</h3>
+                  <p className="text-black/40 font-bold">johndoe@gmail.com</p>
+                </div>
+                <button className="text-primary-500 font-bold rounded-full py-1 px-5 border-2">
+                  User
+                </button>
+              </div>
+              <Separator className="mt-8" />
+              <form className="mt-4">
+                <button className="flex gap-2 items-center">
+                  <LiaSignOutAltSolid className="text-2xl text-red-500" /> Sign
+                  Out
+                </button>
+              </form>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </div>
