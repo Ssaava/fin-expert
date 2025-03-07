@@ -1,133 +1,91 @@
-import { Question } from "@/assets/types";
+import { userSurveyQuestions } from "@/assets/data";
+import { Answer } from "@/assets/types";
 import SurveyComponent from "@/components/survey/SurveyComponent";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 const FintechUserSurvey = () => {
-  // Dynamic questions configuration
-  const questions: Question[] = [
-    {
-      type: "radio",
-      label: "Have you ever registered for a fintech service?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "checkbox",
-      label: "Which Fintech service have you used before?",
-      options: [
-        "Mobile Money",
-        "Online Lending Platforms",
-        "Digital Wallets",
-        "Cryptocurrency platforms",
-        "Other",
-      ],
-    },
-    {
-      type: "checkbox",
-      label: "What Challenges have you faced in accessing FinTech services?",
-      options: [
-        "High Fees",
-        "Complex interfaces",
-        "Limited Customer Support",
-        "Security Concerns",
-        "Others",
-      ],
-    },
-    {
-      type: "number-radio",
-      label: "Do you find FinTech services affordable?",
-      options: Array.from({ length: 10 }, (_, i) => (i + 1).toString()),
-    },
-    {
-      type: "radio",
-      label: "Are FinTech services accessible to people with disabilities?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "radio",
-      label: "How often do you use FinTech services?",
-      options: ["Daily", "Weekly", "Monthly", "Rarely"],
-    },
-    {
-      type: "number-radio",
-      label: "Do you trust FinTech platforms with your financial transactions?",
-      options: Array.from({ length: 10 }, (_, i) => (i + 1).toString()),
-    },
-    {
-      type: "radio",
-      label:
-        "Have you ever experienced fraud or security issues while using FinTech?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "number-radio",
-      label: "How easy is it to navigate FinTech platforms?",
-      options: Array.from({ length: 10 }, (_, i) => (i + 1).toString()),
-    },
-    {
-      type: "radio",
-      label: "Do you find customer Support responsive and helpful?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "radio",
-      label: "Is language a barrier when using FinTech services?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "checkbox",
-      label: "WHow do you primarily access FinTech services?",
-      options: ["Mobile App", "USSD", "Websites", "Others"],
-    },
-    {
-      type: "radio",
-      label:
-        "Do you think FinTech services cater to rural users as well as urban users?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "radio",
-      label:
-        "Have you ever faced transaction delays or failures using fintech services?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "radio",
-      label:
-        "Do you feel safe using FinTech services compared to traditional banking?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "radio",
-      label:
-        "Does your FinTech Platform provide educational resources or financial literacy?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "radio",
-      label: "Would you recommend FinTech services to others?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "text",
-      label: "What improvements would you suggest for FinTech inclusivity",
-      placeholder: "type your answer here",
-    },
-    {
-      type: "radio",
-      label:
-        "Are transaction fees clearly communicated before making payments?",
-      options: ["Yes", "No"],
-    },
-    {
-      type: "radio",
-      label:
-        "Do FinTech services offer financial products tailored to your needs?",
-      options: ["Yes", "No"],
-    },
-  ];
+  const [answers, setAnswers] = useState<Answer>(
+    localStorage.getItem("surveyAnswers")
+      ? JSON.parse(localStorage.getItem("surveyAnswers") || "{}")
+      : {}
+  );
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(
+    localStorage.getItem("surveyCurrentPage")
+      ? JSON.parse(localStorage.getItem("surveyCurrentPage") || "0")
+      : 0
+  );
+  const [results, setResults] = useState<string | null>(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const savedAnswers = localStorage.getItem("surveyAnswers");
+    const savedPage = localStorage.getItem("surveyCurrentPage");
 
+    if (savedAnswers) {
+      setAnswers(JSON.parse(savedAnswers));
+    }
+    if (savedPage) {
+      setCurrentPage(Number(savedPage));
+    }
+  }, [setAnswers]);
+
+  // Save answers and current page to local storage whenever they change
+  useEffect(() => {
+    localStorage.setItem("surveyAnswers", JSON.stringify(answers));
+    localStorage.setItem("surveyCurrentPage", currentPage.toString());
+  }, [answers, currentPage]);
+
+  // Handle form submission
+  const handleSubmit = (): void => {
+    console.log("Survey Answers:", answers);
+    // Simulate backend response
+    setResults(
+      "   You have good financial inclusivity but can improve in accessibility and financial literacy"
+    );
+    setIsSubmitted(true);
+
+    // Clear local storage after submission
+    localStorage.removeItem("surveyAnswers");
+    localStorage.removeItem("surveyCurrentPage");
+  };
+
+  // Handle retake survey
+  const handleRetakeSurvey = (): void => {
+    setAnswers({});
+    setCurrentPage(0);
+    setIsSubmitted(false);
+    setResults(null);
+  };
+
+  // Handle exit survey
+  const handleExitSurvey = (): void => {
+    localStorage.removeItem("surveyAnswers");
+    localStorage.removeItem("surveyCurrentPage");
+    navigate("/survey-insights");
+  };
+
+  // Handle close survey
+  const handleCloseSurvey = (): void => {
+    localStorage.removeItem("surveyAnswers");
+    localStorage.removeItem("surveyCurrentPage");
+    navigate("/survey");
+  };
   return (
     <>
       <section className="pb-10">
-        <SurveyComponent questions={questions} />
+        <SurveyComponent
+          questions={userSurveyQuestions}
+          answers={answers}
+          results={results}
+          setAnswers={setAnswers}
+          isSubmitted={isSubmitted}
+          handleRetakeSurvey={handleRetakeSurvey}
+          handleSubmit={handleSubmit}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          handleCloseSurvey={handleCloseSurvey}
+          handleExitSurvey={handleExitSurvey}
+        />
       </section>
     </>
   );
