@@ -1,7 +1,8 @@
-import { userSurveyQuestions } from "@/assets/data";
+import { regulatorSurveyQuestions } from "@/assets/data";
 import SurveyComponent from "@/components/survey/SurveyComponent";
 import useSurvey from "@/hooks/useSurvey";
-const FintechUserSurvey = () => {
+
+const RegulatorSurvey = () => {
   const {
     answers,
     setAnswers,
@@ -18,7 +19,7 @@ const FintechUserSurvey = () => {
     <>
       <section className="pb-10">
         <SurveyComponent
-          questions={userSurveyQuestions}
+          questions={regulatorSurveyQuestions}
           answers={answers}
           results={results}
           setAnswers={setAnswers}
@@ -35,4 +36,4 @@ const FintechUserSurvey = () => {
   );
 };
 
-export default FintechUserSurvey;
+export default RegulatorSurvey;

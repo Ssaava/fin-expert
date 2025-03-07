@@ -1,19 +1,15 @@
 import { FaPlay } from "react-icons/fa";
 import { GoArrowLeft } from "react-icons/go";
-import { RxCross1 } from "react-icons/rx";
-import surveyIntro from "/survey-intro.png";
 import { Link } from "react-router";
+import surveyIntro from "/survey-intro.png";
 const Survey = () => {
   return (
     <>
       <section className="min-h-screen w-screen bg-white px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6">
         <div className="flex justify-between py-8 mb-8">
-          <button>
+          <Link to="/survey-insights">
             <GoArrowLeft className="text-3xl" />
-          </button>
-          <button>
-            <RxCross1 className="text-3xl" />
-          </button>
+          </Link>
         </div>
         <div className=" flex justify-center">
           <div className="max-w-[50rem] mx-auto flex flex-col gap-6">

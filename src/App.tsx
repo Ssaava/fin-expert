@@ -7,6 +7,7 @@ import SurveyInsightsLayout from "./layouts/survey-insights-layout";
 import Insights from "./pages/insights";
 import Survey from "./pages/survey";
 import FintechUserSurvey from "./pages/fintech-user-survey";
+import RegulatorSurvey from "./pages/regulator-survey";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <Route path="/survey">
         <Route index element={<Survey />} />
         <Route path="user" element={<FintechUserSurvey />} />
+        <Route path="regulator" element={<RegulatorSurvey />} />
       </Route>
       <Route path="/survey-insights" element={<SurveyInsightsLayout />}>
         <Route index element={<Insights />} />
