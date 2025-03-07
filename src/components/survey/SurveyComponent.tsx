@@ -189,6 +189,7 @@ const QuestionComponents = ({
                   {question.type === "text" && (
                     <input
                       type="text"
+                      placeholder={question.placeholder}
                       className="border border-gray-300 rounded-lg p-2 "
                       value={(answers[startIndex + index] as string) || ""}
                       onChange={(e) =>
@@ -262,11 +263,11 @@ const QuestionComponents = ({
                     </div>
                   )}
                   {question.type === "number-radio" && (
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 max-sm:flex-wrap  w-full">
                       {question.options?.map((option, optionIndex) => (
                         <label
                           key={optionIndex}
-                          className={`flex items-center justify-center size-10 rounded-lg border ${
+                          className={`flex items-center justify-center sm:w-full py-2 px-4  rounded-lg border ${
                             answers[startIndex + index] === option
                               ? "border-primary-500 text-primary-500 bg-blue-50"
                               : "border-gray-300"
