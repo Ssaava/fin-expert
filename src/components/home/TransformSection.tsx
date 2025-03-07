@@ -6,7 +6,6 @@ import { Button } from "../ui/button";
 const TransformSection = () => {
   return (
     <>
-      {" "}
       <section className="px-4 md:px-10  min-h-screen mt-8 lg:mt-0">
         <div className="bg-primary-100 px-4 md:px-16 xl:px-56 py-10 md:py-16 rounded-3xl flex flex-col gap-16">
           <div className="flex flex-col gap-4">

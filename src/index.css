@@ -21,6 +21,9 @@
 .gradient-yellow-bg {
   background: linear-gradient(to bottom, #fffcec, #fffcec, #f1f9ff, #f1f9ff);
 }
+.gradient-light-blue-bg {
+  background: linear-gradient(to top, #004cb6, #004cb6, #1488e8);
+}
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
