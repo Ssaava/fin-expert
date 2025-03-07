@@ -2,7 +2,6 @@ import { Answer, Question } from "@/assets/types";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { GoArrowLeft } from "react-icons/go";
-import { IoMdCheckmark } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
 import { Separator } from "../ui/separator";
 import {
@@ -15,6 +14,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { IoMdCheckmark } from "react-icons/io";
 
 interface Props {
   questions: Question[];
@@ -29,6 +29,7 @@ interface Props {
   handleCloseSurvey: () => void;
   handleExitSurvey: () => void;
 }
+
 const QuestionComponents = ({
   questions,
   answers,
@@ -43,7 +44,6 @@ const QuestionComponents = ({
   handleExitSurvey,
 }: Props) => {
   // Save answers and current page to local storage whenever they change
-
   useEffect(() => {
     const savedAnswers = localStorage.getItem("surveyAnswers");
     const savedPage = localStorage.getItem("surveyCurrentPage");
@@ -55,10 +55,12 @@ const QuestionComponents = ({
       setCurrentPage(Number(savedPage));
     }
   }, [setAnswers, setCurrentPage]);
+
   useEffect(() => {
     localStorage.setItem("surveyAnswers", JSON.stringify(answers));
     localStorage.setItem("surveyCurrentPage", currentPage.toString());
   }, [answers, currentPage]);
+
   const handleInputChange = (
     questionIndex: number,
     value: string | string[]
@@ -91,6 +93,21 @@ const QuestionComponents = ({
   const startIndex: number = currentPage * questionsPerPage;
   const endIndex: number = startIndex + questionsPerPage;
   const currentQuestions: Question[] = questions.slice(startIndex, endIndex);
+
+  // Check if all questions on the current page are answered
+  const isCurrentPageComplete = currentQuestions.every((question, index) => {
+    const questionIndex = startIndex + index;
+    const answer = answers[questionIndex];
+
+    if (question.type === "text") {
+      return !!answer && (answer as string).trim() !== "";
+    } else if (question.type === "radio" || question.type === "number-radio") {
+      return !!answer;
+    } else if (question.type === "checkbox") {
+      return !!answer && (answer as string[]).length > 0;
+    }
+    return false;
+  });
 
   return (
     <section className="min-h-screen w-screen bg-white px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6">
@@ -310,6 +327,7 @@ const QuestionComponents = ({
             <Button
               className="text-white bg-primary-500 rounded-full !px-8 !py-4 ml-auto"
               onClick={handleNextPage}
+              disabled={!isCurrentPageComplete} // Disable if not all questions are answered
             >
               Next
             </Button>
@@ -317,6 +335,7 @@ const QuestionComponents = ({
             <Button
               className="text-white bg-primary-500 rounded-full !px-8 !py-4 ml-auto"
               onClick={handleSubmit}
+              disabled={!isCurrentPageComplete} // Disable if not all questions are answered
             >
               Submit
             </Button>
