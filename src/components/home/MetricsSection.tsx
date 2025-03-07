@@ -7,9 +7,8 @@ import Comments from "@/components/home/Comments";
 const MetricsSection = () => {
   return (
     <>
-      {" "}
       <section className="px-4 md:px-10 min-h-screen">
-        <div className="gradient-bg px-4 md:px-16 xl:px-56 py-10 md:py-16 rounded-3xl mt-12 flex flex-col gap-16">
+        <div className="gradient-blue-bg px-4 md:px-16 xl:px-56 py-10 md:py-16 rounded-3xl mt-12 flex flex-col gap-16">
           <div className="flex flex-col gap-4">
             <h3 className="text-center font-medium text-3xl md:text-5xl text-white">
               Struggling to measure financial inclusivity?

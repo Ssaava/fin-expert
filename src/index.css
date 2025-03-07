@@ -15,8 +15,11 @@
   --color-orange-500: #e67e22;
 }
 
-.gradient-bg {
+.gradient-blue-bg {
   background: linear-gradient(to bottom, #040012, #181426, #000052);
+}
+.gradient-yellow-bg {
+  background: linear-gradient(to bottom, #fffcec, #fffcec, #f1f9ff, #f1f9ff);
 }
 :root {
   --background: oklch(1 0 0);
