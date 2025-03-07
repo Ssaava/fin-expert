@@ -2,6 +2,8 @@ import TransformSection from "@/components/home/TransformSection";
 import HeroSection from "@/components/home/HeroSection";
 import MetricsSection from "@/components/home/MetricsSection";
 import ExpertFlowSection from "@/components/home/ExpertFlowSection";
+import FaqSection from "@/components/home/FaqSection";
+import { Button } from "@/components/ui/button";
 const Home = () => {
   return (
     <>
@@ -11,6 +13,23 @@ const Home = () => {
       {/* Transform Section */}
       <TransformSection />
       <ExpertFlowSection />
+
+      <FaqSection />
+
+      <section className="px-4 md:px-10 mt-8 lg:mt-0 mb-12">
+        <div className="gradient-light-blue-bg px-4 md:px-16 xl:px-56 py-10 md:py-16 rounded-3xl flex flex-col gap-16">
+          <h3 className="text-center text-white text-3xl md:text-6xl">
+            Ready to enhance financial inclusivity?
+          </h3>
+          <p className="text-center text-white text-xl">
+            Join FinExpert and make data-driven decisions that impact lives.
+          </p>
+
+          <Button className="rounded-full bg-white/70 text-lg w-fit mx-auto py-6 !px-8 font-bold text-black">
+            Get Started
+          </Button>
+        </div>
+      </section>
     </>
   );
 };
