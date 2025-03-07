@@ -1,8 +1,8 @@
 import HomePieChart from "@/components/home/PieChart";
 import { Recommendation } from "@/components/home/Recommendation";
 import { Score } from "@/components/home/Score";
-import { Button } from "@/components/ui/button";
 import { MdOutlineArrowOutward } from "react-icons/md";
+import { Link } from "react-router";
 const HeroSection = () => {
   return (
     <>
@@ -15,9 +15,12 @@ const HeroSection = () => {
             Empower your fintech platform with insights to enhance inclusivity
             and reach more users.
           </p>
-          <Button className="cursor-pointer rounded-full bg-primary-500 text-lg w-fit mx-auto py-6 !px-8 font-bold text-white">
+          <Link
+            to={"/survey-insights"}
+            className="cursor-pointer rounded-full bg-primary-500 text-lg w-fit mx-auto py-3 px-8 flex items-center gap-2  font-bold text-white"
+          >
             Get Started <MdOutlineArrowOutward className="size-5" />
-          </Button>
+          </Link>
         </div>
 
         <div className="grid xl:grid-cols-3 mt-10 gap-4 md:grid-cols-2">
