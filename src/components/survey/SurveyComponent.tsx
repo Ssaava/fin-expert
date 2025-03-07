@@ -6,9 +6,8 @@ import { Answer, Question } from "@/assets/types";
 
 const QuestionComponents = ({ questions }: { questions: Question[] }) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [answers, setAnswers] = useState<Answer>({}); // Store user answers
+  const [answers, setAnswers] = useState<Answer>({});
 
-  // Handle input change for each question
   const handleInputChange = (
     questionIndex: number,
     value: string | string[]
@@ -19,46 +18,37 @@ const QuestionComponents = ({ questions }: { questions: Question[] }) => {
     }));
   };
 
-  // Handle next page
   const handleNextPage = (): void => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Handle previous page
   const handlePreviousPage = (): void => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
   };
 
-  // Handle exit survey
   const handleExitSurvey = (): void => {
     const confirmExit = window.confirm(
       "Do you want to exit the survey and return to the dashboard?"
     );
     if (confirmExit) {
-      // Redirect to dashboard or handle exit logic
       console.log("Exiting survey...");
     }
   };
 
-  // Handle form submission
   const handleSubmit = (): void => {
     console.log("Survey Answers:", answers);
-    // Add logic to submit answers to your backend or API
     alert("Survey submitted successfully!");
   };
 
-  // Calculate total pages dynamically based on questions
-  const questionsPerPage = 5; // Number of questions per page
+  const questionsPerPage = 5;
   const totalPages = Math.ceil(questions.length / questionsPerPage);
 
-  // Calculate progress
   const progress: number = ((currentPage + 1) / totalPages) * 100;
 
-  // Get questions for the current page
   const startIndex: number = currentPage * questionsPerPage;
   const endIndex: number = startIndex + questionsPerPage;
   const currentQuestions: Question[] = questions.slice(startIndex, endIndex);

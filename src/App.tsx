@@ -16,7 +16,7 @@ const App = () => {
       </Route>
       <Route path="/survey">
         <Route index element={<Survey />} />
-        <Route path="1" element={<FintechUserSurvey />} />
+        <Route path="user" element={<FintechUserSurvey />} />
       </Route>
       <Route path="/survey-insights" element={<SurveyInsightsLayout />}>
         <Route index element={<Insights />} />

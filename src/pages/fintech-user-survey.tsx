@@ -126,7 +126,9 @@ const FintechUserSurvey = () => {
 
   return (
     <>
-      <SurveyComponent questions={questions} />
+      <section className="pb-10">
+        <SurveyComponent questions={questions} />
+      </section>
     </>
   );
 };
