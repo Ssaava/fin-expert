@@ -7,12 +7,19 @@
 @theme {
   --color-primary-500: #0074d4;
   --color-primary-300: #0086fc1a;
+  --color-primary-100: #f1f9ff;
+  --color-gold-400: #c8ad14;
+  --color-yellow-100: #fffbe4;
+  --color-yellow-400: #ffe867;
   --color-gray-200: #f1f0ed;
   --color-orange-500: #e67e22;
 }
 
-.gradient-bg {
+.gradient-blue-bg {
   background: linear-gradient(to bottom, #040012, #181426, #000052);
+}
+.gradient-yellow-bg {
+  background: linear-gradient(to bottom, #fffcec, #fffcec, #f1f9ff, #f1f9ff);
 }
 :root {
   --background: oklch(1 0 0);
