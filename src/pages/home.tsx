@@ -25,7 +25,7 @@ const Home = () => {
             Join FinExpert and make data-driven decisions that impact lives.
           </p>
 
-          <Button className="rounded-full bg-white/70 text-lg w-fit mx-auto py-6 !px-8 font-bold text-black">
+          <Button className="rounded-full hover:text-white cursor-pointer bg-white/70 text-lg w-fit mx-auto py-6 !px-8 font-bold text-black">
             Get Started
           </Button>
         </div>

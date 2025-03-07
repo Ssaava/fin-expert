@@ -39,7 +39,7 @@ const FaqSection = () => {
                 <h3 className="text-[#5C687D] font-bold">
                   Have more questions?
                 </h3>
-                <Button className="border w-fit border-[#E1E9F7]  rounded-lg font-bold bg-white text-black hover:text-white py-5 px-6">
+                <Button className="cursor-pointer border w-fit border-[#E1E9F7]  rounded-lg font-bold bg-white text-black hover:text-white py-5 px-6">
                   Contact Support
                 </Button>
               </div>
