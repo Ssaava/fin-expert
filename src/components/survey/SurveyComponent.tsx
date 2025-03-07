@@ -1,6 +1,6 @@
 import { Answer, Question } from "@/assets/types";
 import { Button } from "@/components/ui/button";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { GoArrowLeft } from "react-icons/go";
 import { IoMdCheckmark } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
@@ -42,6 +42,23 @@ const QuestionComponents = ({
   handleCloseSurvey,
   handleExitSurvey,
 }: Props) => {
+  // Save answers and current page to local storage whenever they change
+
+  useEffect(() => {
+    const savedAnswers = localStorage.getItem("surveyAnswers");
+    const savedPage = localStorage.getItem("surveyCurrentPage");
+
+    if (savedAnswers) {
+      setAnswers(JSON.parse(savedAnswers));
+    }
+    if (savedPage) {
+      setCurrentPage(Number(savedPage));
+    }
+  }, [setAnswers, setCurrentPage]);
+  useEffect(() => {
+    localStorage.setItem("surveyAnswers", JSON.stringify(answers));
+    localStorage.setItem("surveyCurrentPage", currentPage.toString());
+  }, [answers, currentPage]);
   const handleInputChange = (
     questionIndex: number,
     value: string | string[]
