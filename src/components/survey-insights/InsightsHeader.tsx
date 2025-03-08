@@ -106,9 +106,9 @@ const InsightsHeader = () => {
           <button>
             <IoSearchOutline className="text-2xl" />
           </button>
-          <button>
+          <Link to="/survey-insights/settings">
             <CiSettings className="text-2xl" />
-          </button>
+          </Link>
 
           <Popover>
             <PopoverTrigger>

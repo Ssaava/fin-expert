@@ -5,6 +5,13 @@ import { Link } from "react-router";
 const Insights = () => {
   return (
     <>
+      <div className="flex flex-col gap-2 mb-10">
+        <h1 className="text-3xl font-bold">Survey & insights</h1>
+        <p className="text-black/60 font-medium">
+          Here's your inclusivity score and recommendations
+        </p>
+      </div>
+      {/* logic to display the insights from fetched data here */}
       <section className="border bg-white rounded-lg p-6 py-12 flex items-center justify-center w-full">
         <div className="flex flex-col gap-6 max-w-[40rem] mx-auto">
           <FaChrome className="text-6xl border-8 border-gray-300 rounded-full mx-auto" />
