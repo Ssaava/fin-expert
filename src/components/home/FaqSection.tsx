@@ -25,14 +25,12 @@ const FaqSection = () => {
                 collapsible
               >
                 {frequentQuestions.map(({ id, question, answer }) => (
-                  <>
-                    <AccordionItem key={id} value={`item-${id}`}>
-                      <AccordionTrigger className="border px-6 md:px-10 md:py-5 text-lg">
-                        {question}
-                      </AccordionTrigger>
-                      <AccordionContent>{answer}</AccordionContent>
-                    </AccordionItem>
-                  </>
+                  <AccordionItem key={id} value={`item-${id}`}>
+                    <AccordionTrigger className="border px-6 md:px-10 md:py-5 text-lg">
+                      {question}
+                    </AccordionTrigger>
+                    <AccordionContent>{answer}</AccordionContent>
+                  </AccordionItem>
                 ))}
               </Accordion>
               <div className="flex flex-col gap-4 mt-12">

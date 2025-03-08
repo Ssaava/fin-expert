@@ -10,6 +10,7 @@ import FintechUserSurvey from "./pages/fintech-user-survey";
 import RegulatorSurvey from "./pages/regulator-survey";
 import ServiceProviderSurvey from "./pages/service-provider-survey";
 import DeveloperSurvey from "./pages/developer-survey";
+import Settings from "./pages/settings";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       </Route>
       <Route path="/survey-insights" element={<SurveyInsightsLayout />}>
         <Route index element={<Insights />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
       <Route path="/auth" element={<AuthLayout />}></Route>
       <Route path="/manage-password" element={<ManagePasswordLayout />}></Route>
