@@ -44,8 +44,8 @@ export default function Comments() {
         ]}
       >
         <CarouselContent>
-          {comments.map(({ title, name, comment, image }) => (
-            <CarouselItem>
+          {comments.map(({ id, title, name, comment, image }) => (
+            <CarouselItem key={id}>
               <div className="mx-auto flex flex-col gap-6 max-w-[50rem]">
                 <p className="text-white text-center">{comment}</p>
                 <div className="flex items-center gap-4 justify-center">

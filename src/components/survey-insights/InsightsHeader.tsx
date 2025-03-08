@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CiSettings } from "react-icons/ci";
 import { IoSearchOutline } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { LiaSignOutAltSolid } from "react-icons/lia";
@@ -12,8 +12,12 @@ import {
 } from "@/components/ui/popover";
 
 const InsightsHeader = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleSignOut = () => {
+    navigate("/");
+  };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -123,12 +127,16 @@ const InsightsHeader = () => {
                   <h3 className="font-bold">John Doe</h3>
                   <p className="text-black/40 font-bold">johndoe@gmail.com</p>
                 </div>
-                <button className="text-primary-500 font-bold rounded-full py-1 px-5 border-2">
+                <Link
+                  to="/survey-insights/settings"
+                  reloadDocument
+                  className="text-primary-500 font-bold rounded-full py-1 px-5 border-2"
+                >
                   User
-                </button>
+                </Link>
               </div>
               <Separator className="mt-8" />
-              <form className="mt-4">
+              <form onSubmit={handleSignOut} className="mt-4">
                 <button className="flex gap-2 items-center">
                   <LiaSignOutAltSolid className="text-2xl text-red-500" /> Sign
                   Out
