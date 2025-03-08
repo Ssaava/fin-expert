@@ -8,6 +8,7 @@ import Insights from "./pages/insights";
 import Survey from "./pages/survey";
 import FintechUserSurvey from "./pages/fintech-user-survey";
 import RegulatorSurvey from "./pages/regulator-survey";
+import ServiceProviderSurvey from "./pages/service-provider-survey";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route index element={<Survey />} />
         <Route path="user" element={<FintechUserSurvey />} />
         <Route path="regulator" element={<RegulatorSurvey />} />
+        <Route path="service-provider" element={<ServiceProviderSurvey />} />
       </Route>
       <Route path="/survey-insights" element={<SurveyInsightsLayout />}>
         <Route index element={<Insights />} />

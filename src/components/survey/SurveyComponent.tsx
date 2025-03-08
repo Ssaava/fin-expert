@@ -43,7 +43,6 @@ const QuestionComponents = ({
   handleCloseSurvey,
   handleExitSurvey,
 }: Props) => {
-  // Save answers and current page to local storage whenever they change
   useEffect(() => {
     const savedAnswers = localStorage.getItem("surveyAnswers");
     const savedPage = localStorage.getItem("surveyCurrentPage");
@@ -71,14 +70,12 @@ const QuestionComponents = ({
     }));
   };
 
-  // Handle next page
   const handleNextPage = (): void => {
     if (currentPage < totalPages - 1) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Handle previous page
   const handlePreviousPage = (): void => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
@@ -327,7 +324,7 @@ const QuestionComponents = ({
             <Button
               className="text-white bg-primary-500 rounded-full !px-8 !py-4 ml-auto"
               onClick={handleNextPage}
-              disabled={!isCurrentPageComplete} // Disable if not all questions are answered
+              disabled={!isCurrentPageComplete}
             >
               Next
             </Button>
@@ -335,7 +332,7 @@ const QuestionComponents = ({
             <Button
               className="text-white bg-primary-500 rounded-full !px-8 !py-4 ml-auto"
               onClick={handleSubmit}
-              disabled={!isCurrentPageComplete} // Disable if not all questions are answered
+              disabled={!isCurrentPageComplete}
             >
               Submit
             </Button>
