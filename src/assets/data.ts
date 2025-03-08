@@ -346,3 +346,474 @@ export const regulatorSurveyQuestions: Question[] = [
     options: Array.from({ length: 5 }, (_, i) => (i + 1).toString()),
   },
 ];
+
+export const serviceProviderSurveyQuestions: Question[] = [
+  {
+    type: "radio",
+    label:
+      "What percentage of your users have access to combined banking, financial, and digital services?",
+    options: ["0-25%", "26-50%", "51-75%", "76-100%"],
+  },
+  {
+    type: "radio",
+    label:
+      "How is the distribution of your users between rural and urban areas?",
+    options: [
+      "Mostly rural (75%+ rural, 25% urban)",
+      "Balanced (50% rural, 50% urban)",
+      "Mostly urban (75% urban, 25% rural)",
+      "Uncertain / No data",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What is the age distribution of your app users? (Select all that apply)",
+    options: ["Under 18", "18-25", "26-35", "36-45", "46-50", "Above 60"],
+  },
+
+  {
+    type: "radio",
+    label: "591",
+    options: [
+      "Below $100",
+      "$100-$500",
+      "$501-$1000",
+      "$1001-$5,000",
+      "Above $500",
+      "Prefer not to say",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you verify the accuracy of user identification and bio data? (Select all that apply)",
+    options: [
+      "National ID",
+      "Biometric authentication",
+      "Cross-checking with financial institutions",
+      "Document verification (eg, passports, driver's licenses)",
+      "",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What measures are in place to handle inconsistent data? (Select all that apply)",
+    options: [
+      "Automated validation checks",
+      "Manual data reviews",
+      "Prompting users to update incorrect/missing information",
+      "Ignoring inconsistent data in reports",
+      "Other",
+    ],
+  },
+
+  {
+    type: "checkbox",
+    label:
+      " How do you cater to different demographics? (Select all that apply)",
+    options: [
+      "Language translation services",
+      "Customized financial products for different user groups",
+      "Region-specific and transaction options",
+      "Accessibility features (eg; support for disabled users)",
+      "Other",
+    ],
+  },
+  {
+    type: "radio",
+    label:
+      "What percentage of users actively use your platform compared to total enrolled users?",
+    options: ["0-25%", "26-50%", "51-75%", "76-100%"],
+  },
+
+  {
+    type: "checkbox",
+    label:
+      "What is your preferred mode of communication with clients? (Select all that apply)",
+    options: [
+      "SMS",
+      "Email",
+      "Push notifications",
+      "In-app purchases",
+      "Call center support",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you verify if clients have existing financial obligations? (Select all that apply)",
+    options: [
+      "Credit Bureau checks",
+      "Bank account transaction analysis",
+      "Self-declaration from users",
+      "Other",
+    ],
+  },
+  // to be fixed later
+  {
+    type: "checkbox",
+    label:
+      "What percentage of users use different platforms? (Total should be 100%)",
+    options: ["Android", "iOS", "USSD", "web"],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you offer services tailored to users with different credit scores?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you address economic inequality through your financial products? (Select all that apply)",
+    options: [
+      "Low-interest loans for low-income users",
+      "Microfinance and small loan schemas",
+      "Financial literacy programs",
+      "No or low transaction fees for underprivileged users",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What are the common barriers to financial inclusion faced by your users? (Select all that apply)",
+    options: [
+      "Lack of required identification documents",
+      "Poor digital literacy",
+      "High transaction costs",
+      "Limited financial knowledge",
+      "Lack of access to mobile devices or internet",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you track and analyze user churn trends? (Select all that apply)",
+    options: [
+      "Tracking login and transaction frequency",
+      "Analyzing feedback adn complaints",
+      "Sending exit surveys to inactive users",
+      "Predictive analytics to forecast churn risk",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What strategies do you have for financial literacy improvement? (Select all that apply)",
+    options: [
+      "Free educational content in the app",
+      "Financial advisory services",
+      "Partnerships with educational institutions",
+      "Webinars and training sessions",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you verify the preferred contact communication type of clients? (Select all that apply)",
+    options: [
+      "Asking during sign-up",
+      "Allowing users to update preferences in the app",
+      "Tracking response rates from different channels",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you tailor financial services to specific needs of different regions? (Select all that apply)",
+    options: [
+      "Adjusting pricing based on local economic conditions",
+      "Offering region-specific payment methods",
+      "Partnering with local financial institutions",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What resources and support do you provide to facilitate app usage? (Select all that apply)",
+    options: [
+      "Customer support via call, chat, or email",
+      "In-app tutorials and help center",
+      "Community forums and peer support groups",
+      "Dedicated financial education programs",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you track and analyze user churn trends? (Select all that apply)",
+    options: [
+      "Tracking login and transaction frequency",
+      "Analyzing feedback and complaints",
+      "Sending exit surveys to inactive users",
+      "Predictive analytics to forecast churn risk",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What strategies do you have for financial literacy improvement? (Select all that apply)",
+    options: [
+      "Free educational content in the app",
+      "Financial advisory services",
+      "Financial advisory services",
+      "Webinars and training sessions",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you verify the preferred contact communication type of clients? (Select all that apply)",
+    options: [
+      "Asking during sign-up",
+      "Allowing users to update preferences in the app",
+      "Tracking response rates from different channels",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you tailor financial services to specific needs of different regions? (Select all that apply)",
+    options: [
+      "Adjusting pricing based on local economic conditions",
+      "Offering region-specific payment methods",
+      "Partnering with local financial institutions",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What resources and support do you provide to facilitate app usage? (Select all that apply)",
+    options: [
+      "Customer support via call, chat, or email",
+      "In-app tutorials and help center",
+      "Community forums and peer support groups",
+      "Dedicated financial education programs",
+      "Other",
+    ],
+  },
+  //
+];
+
+export const developerSurveyQuestions: Question[] = [
+  {
+    type: "checkbox",
+    label:
+      "Which privacy protection regulations do you enforce? (Select all that apply)",
+    options: [
+      "General Data Protection Regulation (GDPR)",
+      "Payment Card Industry Data Security Standard (PCI DSS)",
+      "Payment Card Industry Data Security Standard (PCI DSS)",
+      "ISO 27001",
+      "None",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "Which protocols do you follow to prevent duplicate user registrations? (Select all that apply)",
+    options: [
+      "Unique identifiers (e.g., National ID, Social Security Number)",
+      "Biometric verification",
+      "Phone number/email verification",
+      "IP address tracking",
+      "Device fingerprinting",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "Which measures do you use to ensure the uniqueness and security of each user? (Select all that apply)",
+    options: [
+      "Multi-factor authentication (MFE)",
+      "Biometric authentication (e.g., fingerprint, facial recognition)",
+      "Strong password enforcement",
+      "CAPTCHA or bot detection mechanisms",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What measures are in place to ensure the confidentiality of user financial transactions? (Select all that apply)",
+    options: [
+      "End-to-end encryption",
+      "Tokenization",
+      "Multi-factor authentication (MFE)",
+      "User consent and authorization procedures",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "Which security measures are used to protect user personal information? (Select all that apply)",
+    options: [
+      "Data encryption",
+      "Secure data storage and restricted access",
+      "Regular security audits",
+      "Which security measures are used to protect user personal information? (Select all that apply)",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What encryption protocols do you use for storing sensitive user data? (Select all that apply)",
+    options: [
+      "AES-256",
+      "RSA encryption",
+      "TLS/SSL for data transmission",
+      "Hashing and slating for password",
+      "Other",
+    ],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you enforce strong authentication methods (e.g., MFA, biometrics)?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "radio",
+    label: "How often do you conduct security audits and penetration testing?",
+    options: ["Monthly", "Quarterly", "Bi-annually", "Annually", "Never"],
+  },
+  {
+    type: "radio",
+    label: "Do you have a policy on tracking and updating user activity data?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you handle missing or inconsistent user demographic data? (Select all that apply)",
+    options: [
+      "Data validation and standardization",
+      "Requesting user updates via app notifications",
+      "Automated error detection and correction",
+      "Ignoring missing fields in analysis",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you ensure accessibility for users with disabilities? (Select all that apply)",
+    options: [
+      "Support for screen readers",
+      "Voice command functionality",
+      "High-contrast and text-to-speech options",
+      "Keyboard-only navigation support",
+      "Other",
+    ],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you track user engagement levels to improve financial literacy resources?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "radio",
+    label:
+      "Are there guidelines to regulate tracking and reporting of user behavior?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "radio",
+    label:
+      "How often do you analyze user churn rates to improve financial inclusion?",
+    options: ["Monthly", "Quarterly", "Bi-annually", "Annually", "Never"],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you use AI or machine learning models for risk assessment and fraud detection?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What methods do you use to verify user identity and prevent fraud? (Select all that apply)",
+    options: [
+      "Know your Customer (KYC) verification",
+      "Biometric verification",
+      "One-time password (OTP) verification",
+      "AI-based fraud detection algorithms",
+      "Other",
+    ],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you provide features that support unbanked or underbanked populations?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you incorporate country-specific regulations into FinTech services? (Select all that apply)",
+    options: [
+      "Compliance with national banking regulations",
+      "Localization of user policies and terms",
+      "integration with regional financial networks",
+      "Other",
+    ],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you ensure compliance with age restrictions in FinTech services?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you assess the fairness of credit score-based financial products? (Select all that apply)",
+    options: [
+      "Periodic fairness audits",
+      "AI-based bias detection",
+      "Transparency in scoring methodologies",
+      "User complaint and appeal mechanisms",
+      "Other",
+    ],
+  },
+];
+
+// export const formDataTemplate = [
+//   {
+//     type: "checkbox",
+//     label: "",
+//     options: ["Other"],
+//   },
+//   {
+//     type: "radio",
+//     label: "",
+//     options: ["Yes", "No"],
+//   },
+
+//   {
+//     type: "number-radio",
+//     label: "",
+//     options: Array.from({ length: 10 }, (_, i) => (i + 1).toString()),
+//   },
+//   //
+// ];
