@@ -609,22 +609,211 @@ export const serviceProviderSurveyQuestions: Question[] = [
   },
   //
 ];
-export const formDataTemplate = [
+
+export const developerSurveyQuestions: Question[] = [
+  {
+    type: "checkbox",
+    label:
+      "Which privacy protection regulations do you enforce? (Select all that apply)",
+    options: [
+      "General Data Protection Regulation (GDPR)",
+      "Payment Card Industry Data Security Standard (PCI DSS)",
+      "Payment Card Industry Data Security Standard (PCI DSS)",
+      "ISO 27001",
+      "None",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "Which protocols do you follow to prevent duplicate user registrations? (Select all that apply)",
+    options: [
+      "Unique identifiers (e.g., National ID, Social Security Number)",
+      "Biometric verification",
+      "Phone number/email verification",
+      "IP address tracking",
+      "Device fingerprinting",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "Which measures do you use to ensure the uniqueness and security of each user? (Select all that apply)",
+    options: [
+      "Multi-factor authentication (MFE)",
+      "Biometric authentication (e.g., fingerprint, facial recognition)",
+      "Strong password enforcement",
+      "CAPTCHA or bot detection mechanisms",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What measures are in place to ensure the confidentiality of user financial transactions? (Select all that apply)",
+    options: [
+      "End-to-end encryption",
+      "Tokenization",
+      "Multi-factor authentication (MFE)",
+      "User consent and authorization procedures",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "Which security measures are used to protect user personal information? (Select all that apply)",
+    options: [
+      "Data encryption",
+      "Secure data storage and restricted access",
+      "Regular security audits",
+      "Which security measures are used to protect user personal information? (Select all that apply)",
+      "Other",
+    ],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What encryption protocols do you use for storing sensitive user data? (Select all that apply)",
+    options: [
+      "AES-256",
+      "RSA encryption",
+      "TLS/SSL for data transmission",
+      "Hashing and slating for password",
+      "Other",
+    ],
+  },
   {
     type: "radio",
-    label: "",
+    label:
+      "Do you enforce strong authentication methods (e.g., MFA, biometrics)?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "radio",
+    label: "How often do you conduct security audits and penetration testing?",
+    options: ["Monthly", "Quarterly", "Bi-annually", "Annually", "Never"],
+  },
+  {
+    type: "radio",
+    label: "Do you have a policy on tracking and updating user activity data?",
     options: ["Yes", "No"],
   },
   {
     type: "checkbox",
-    label: "",
-    options: ["Other"],
+    label:
+      "How do you handle missing or inconsistent user demographic data? (Select all that apply)",
+    options: [
+      "Data validation and standardization",
+      "Requesting user updates via app notifications",
+      "Automated error detection and correction",
+      "Ignoring missing fields in analysis",
+      "Other",
+    ],
   },
-
   {
-    type: "number-radio",
-    label: "",
-    options: Array.from({ length: 10 }, (_, i) => (i + 1).toString()),
+    type: "checkbox",
+    label:
+      "How do you ensure accessibility for users with disabilities? (Select all that apply)",
+    options: [
+      "Support for screen readers",
+      "Voice command functionality",
+      "High-contrast and text-to-speech options",
+      "Keyboard-only navigation support",
+      "Other",
+    ],
   },
-  //
+  {
+    type: "radio",
+    label:
+      "Do you track user engagement levels to improve financial literacy resources?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "radio",
+    label:
+      "Are there guidelines to regulate tracking and reporting of user behavior?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "radio",
+    label:
+      "How often do you analyze user churn rates to improve financial inclusion?",
+    options: ["Monthly", "Quarterly", "Bi-annually", "Annually", "Never"],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you use AI or machine learning models for risk assessment and fraud detection?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "checkbox",
+    label:
+      "What methods do you use to verify user identity and prevent fraud? (Select all that apply)",
+    options: [
+      "Know your Customer (KYC) verification",
+      "Biometric verification",
+      "One-time password (OTP) verification",
+      "AI-based fraud detection algorithms",
+      "Other",
+    ],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you provide features that support unbanked or underbanked populations?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you incorporate country-specific regulations into FinTech services? (Select all that apply)",
+    options: [
+      "Compliance with national banking regulations",
+      "Localization of user policies and terms",
+      "integration with regional financial networks",
+      "Other",
+    ],
+  },
+  {
+    type: "radio",
+    label:
+      "Do you ensure compliance with age restrictions in FinTech services?",
+    options: ["Yes", "No"],
+  },
+  {
+    type: "checkbox",
+    label:
+      "How do you assess the fairness of credit score-based financial products? (Select all that apply)",
+    options: [
+      "Periodic fairness audits",
+      "AI-based bias detection",
+      "Transparency in scoring methodologies",
+      "User complaint and appeal mechanisms",
+      "Other",
+    ],
+  },
 ];
+
+// export const formDataTemplate = [
+//   {
+//     type: "checkbox",
+//     label: "",
+//     options: ["Other"],
+//   },
+//   {
+//     type: "radio",
+//     label: "",
+//     options: ["Yes", "No"],
+//   },
+
+//   {
+//     type: "number-radio",
+//     label: "",
+//     options: Array.from({ length: 10 }, (_, i) => (i + 1).toString()),
+//   },
+//   //
+// ];
