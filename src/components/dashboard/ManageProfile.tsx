@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Input } from "../common/Input";
+import { PencilIcon } from "lucide-react";
 
 const ManageProfile = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ const ManageProfile = () => {
     lastName: "",
     email: "",
     role: "",
+    profileImage: "https://github.com/shadcn.png",
   });
 
   const handleChange = (e: { target: { name: string; value: string } }) => {
@@ -20,15 +22,43 @@ const ManageProfile = () => {
       [name]: value,
     }));
   };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData((prev) => ({
+          ...prev,
+          profileImage: reader.result as string,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <>
       <div className="p-6 md:p-12 rounded-lg w-full mx-auto bg-white mb-12">
         <h1 className="text-center font-bold text-lg">Manage Profile</h1>
-        <div className="w-fit mx-auto relative h-fit mt-6 rounded-full">
+        <div className="w-fit border mx-auto relative h-fit mt-6 rounded-full group">
           <Avatar className="size-20">
-            <AvatarImage src={"https://github.com/shadcn.png"} />
+            <AvatarImage src={formData.profileImage} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
+          <label
+            htmlFor="profile-image"
+            className="absolute bottom-0 right-0 bg-primary-500 p-[0.4rem] rounded-full cursor-pointer shadow-md hover:bg-black/90 border-white border-2"
+          >
+            <PencilIcon className="w-[0.8rem] h-[0.8rem] text-white" />
+            <input
+              type="file"
+              id="profile-image"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </label>
         </div>
 
         <form className="flex flex-col gap-6 mt-12">
