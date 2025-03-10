@@ -68,12 +68,18 @@ const Header = () => {
           <Link to="/">Contact Us</Link>
         </div>
         <div className="hidden md:flex gap-4 items-center">
-          <Button className="cursor-pointer rounded-full bg-primary-500 p-6">
+          <Link
+            to="/auth/create-account"
+            className="cursor-pointer rounded-full bg-primary-500 px-6 py-3 hover:bg-black/90 text-white font-bold duration-200"
+          >
             Create Account
-          </Button>
-          <Button className="cursor-pointer rounded-full bg-gray-200 text-gray-900 hover:text-white p-6">
+          </Link>
+          <Link
+            to="auth"
+            className="cursor-pointer rounded-full bg-gray-200 text-gray-900 hover:text-white hover:bg-black/90 duration-200 font-bold px-6 py-3"
+          >
             Login
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

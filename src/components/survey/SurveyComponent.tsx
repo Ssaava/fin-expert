@@ -281,7 +281,7 @@ const QuestionComponents = ({
                       {question.options?.map((option, optionIndex) => (
                         <label
                           key={optionIndex}
-                          className={`flex items-center justify-center sm:w-full py-2 px-4  rounded-lg border ${
+                          className={`hover:border-primary-500 hover:text-primary-500 hover:bg-blue-50 duration-200 flex items-center justify-center sm:w-full py-2 px-4  rounded-lg border ${
                             answers[startIndex + index] === option
                               ? "border-primary-500 text-primary-500 bg-blue-50"
                               : "border-gray-300"

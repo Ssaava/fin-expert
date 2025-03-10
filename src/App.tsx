@@ -11,6 +11,9 @@ import RegulatorSurvey from "./pages/regulator-survey";
 import ServiceProviderSurvey from "./pages/service-provider-survey";
 import DeveloperSurvey from "./pages/developer-survey";
 import Settings from "./pages/settings";
+import AccountVerification from "./pages/auth/account-verification";
+import CreateAccount from "./pages/auth/create-account";
+import Login from "./pages/auth/login";
 
 const App = () => {
   return (
@@ -29,7 +32,11 @@ const App = () => {
         <Route index element={<Insights />} />
         <Route path="settings" element={<Settings />} />
       </Route>
-      <Route path="/auth" element={<AuthLayout />}></Route>
+      <Route path="/auth" element={<AuthLayout />}>
+        <Route index element={<Login />} />
+        <Route path="create-account" element={<CreateAccount />} />
+        <Route path="account-verification" element={<AccountVerification />} />
+      </Route>
       <Route path="/manage-password" element={<ManagePasswordLayout />}></Route>
       <Route path="*" element={<div>404</div>}></Route>
     </Routes>
