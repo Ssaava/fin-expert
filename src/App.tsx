@@ -14,6 +14,7 @@ import ServiceProviderSurvey from "./pages/service-provider-survey";
 import Settings from "./pages/settings";
 import Survey from "./pages/survey";
 import AccountVerification from "./pages/auth/account-verification";
+import ResetPassword from "./pages/auth/reset-password";
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="create-account" element={<CreateAccount />} />
       </Route>
       <Route path="account-verification" element={<AccountVerification />} />
+      <Route path="password-reset" element={<ResetPassword />} />
       <Route path="/manage-password" element={<ManagePasswordLayout />}></Route>
       <Route path="*" element={<div>404</div>}></Route>
     </Routes>
