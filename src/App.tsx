@@ -2,10 +2,11 @@ import Home from "@/pages/home";
 import { Route, Routes } from "react-router";
 import AuthLayout from "./layouts/auth-layout";
 import LandingPageLayout from "./layouts/landing-page-layout";
-import ManagePasswordLayout from "./layouts/manage-password-layout";
 import SurveyInsightsLayout from "./layouts/survey-insights-layout";
+import AccountVerification from "./pages/auth/account-verification";
 import CreateAccount from "./pages/auth/create-account";
 import Login from "./pages/auth/login";
+import ResetPassword from "./pages/auth/reset-password";
 import DeveloperSurvey from "./pages/developer-survey";
 import FintechUserSurvey from "./pages/fintech-user-survey";
 import Insights from "./pages/insights";
@@ -13,8 +14,6 @@ import RegulatorSurvey from "./pages/regulator-survey";
 import ServiceProviderSurvey from "./pages/service-provider-survey";
 import Settings from "./pages/settings";
 import Survey from "./pages/survey";
-import AccountVerification from "./pages/auth/account-verification";
-import ResetPassword from "./pages/auth/reset-password";
 
 const App = () => {
   return (
@@ -39,7 +38,6 @@ const App = () => {
       </Route>
       <Route path="account-verification" element={<AccountVerification />} />
       <Route path="password-reset" element={<ResetPassword />} />
-      <Route path="/manage-password" element={<ManagePasswordLayout />}></Route>
       <Route path="*" element={<div>404</div>}></Route>
     </Routes>
   );

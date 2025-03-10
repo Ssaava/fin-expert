@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 
 const ResetPassword = () => {
-  const [isEmailVerified] = useState(true);
+  const [isEmailVerified] = useState(false);
   const [formData, setFormData] = useState({
     newPassword: "",
     confirmPassword: "",
@@ -111,10 +111,7 @@ const ResetPassword = () => {
 
               <div className="flex gap-2 items-center justify-center w-full">
                 <p>Remembered Password?</p>
-                <Link
-                  className="text-black font-bold"
-                  to={"/auth/create-account"}
-                >
+                <Link className="text-black font-bold" to={"/auth"}>
                   Login
                 </Link>
               </div>
