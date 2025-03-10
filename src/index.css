@@ -27,6 +27,11 @@
 button {
   cursor: pointer;
 }
+.vertical-spacing {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
