@@ -16,7 +16,7 @@ const HeroSection = () => {
             and reach more users.
           </p>
           <Link
-            to={"/survey-insights"}
+            to={"/dashboard"}
             className="cursor-pointer rounded-full bg-primary-500 text-lg w-fit mx-auto py-3 px-8 flex items-center gap-2  font-bold text-white"
           >
             Get Started <MdOutlineArrowOutward className="size-5" />
