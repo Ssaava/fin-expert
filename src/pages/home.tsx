@@ -1,9 +1,9 @@
-import TransformSection from "@/components/home/TransformSection";
-import HeroSection from "@/components/home/HeroSection";
-import MetricsSection from "@/components/home/MetricsSection";
 import ExpertFlowSection from "@/components/home/ExpertFlowSection";
 import FaqSection from "@/components/home/FaqSection";
-import { Button } from "@/components/ui/button";
+import HeroSection from "@/components/home/HeroSection";
+import MetricsSection from "@/components/home/MetricsSection";
+import TransformSection from "@/components/home/TransformSection";
+import { Link } from "react-router";
 import bgImage from "/inclusivity.png";
 const Home = () => {
   return (
@@ -33,9 +33,12 @@ const Home = () => {
             Join FinExpert and make data-driven decisions that impact lives.
           </p>
 
-          <Button className="rounded-full hover:text-white cursor-pointer bg-white/70 text-lg w-fit mx-auto py-6 !px-8 font-bold text-black">
+          <Link
+            to="/dashboard"
+            className="rounded-full hover:text-white cursor-pointer bg-white/70 text-lg w-fit mx-auto  py-3 px-8 z-10 font-bold text-black hover:bg-black/90 duration-200"
+          >
             Get Started
-          </Button>
+          </Link>
         </div>
       </section>
     </>

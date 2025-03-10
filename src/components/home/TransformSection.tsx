@@ -46,7 +46,7 @@ const TransformSection = () => {
                     reveal where your platform stands
                   </p>
                 </div>
-                <Button className="mt-auto cursor-pointer rounded-full bg-primary-500 text-lg w-fit mx-auto py-6 !px-8 font-bold text-white">
+                <Button className="mt-auto z-10 cursor-pointer rounded-full bg-primary-500 text-lg w-fit mx-auto py-6 !px-8 font-bold text-white">
                   Assess your inclusivity
                   <MdOutlineArrowOutward className="size-5" />
                 </Button>

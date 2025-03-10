@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import city from "/city.png";
 import insights from "/insights.png";
 import bgImage from "/transform.png";
@@ -31,14 +32,17 @@ const ExpertFlowSection = () => {
               </p>
               <div className="rounded-lg bg-gray-200 w-full flex items-center p-4 sm:py-8 lg:py-12 justify-center">
                 <div className="flex items-center justify-center rounded-full bg-[#0074D4]/20 border-10 border-[#0074D4]/10  py-2 px-2">
-                  <button className="bg-primary-500 text-white rounded-full px-6 py-3 font-bold ">
+                  <Link
+                    to="/auth/create-account"
+                    className="bg-primary-500 text-white rounded-full px-6 py-3 font-bold "
+                  >
                     Create Account
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="relative z-10 rounded-lg bg-white/70 p-6 md:p-12 flex flex-col gap-4">
-              <div className="absolute md:-bottom-20 md:-left-20 max-md:left-1/2 max-md:-translate-x-1/2 max-md:rotate-90 max-md:-bottom-12">
+              <div className="absolute md:-bottom-15 md:-left-20 max-md:left-1/2 max-md:-translate-x-1/2 max-md:rotate-90 max-md:-bottom-12">
                 <img
                   src="/connector-line-bottom.png"
                   alt=""
@@ -59,7 +63,7 @@ const ExpertFlowSection = () => {
                 <img src={city} alt="City Image" />
               </div>
             </div>
-            <div className="z-10 md:col-span-2 ">
+            <div className="z-10 md:col-span-2 md:-mt-4">
               <div className="w-fit mx-auto bg-white/70 rounded-lg  p-6 md:p-12 flex flex-col gap-4">
                 <p>3.</p>
                 <h3 className="text-2xl font-medium">
