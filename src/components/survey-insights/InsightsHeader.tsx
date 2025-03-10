@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CiSettings } from "react-icons/ci";
 import { IoSearchOutline } from "react-icons/io5";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { LiaSignOutAltSolid } from "react-icons/lia";
@@ -13,6 +13,7 @@ import {
 
 const InsightsHeader = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSignOut = () => {
@@ -20,6 +21,14 @@ const InsightsHeader = () => {
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
+  const isActivePath = (path: string) => {
+    return location.pathname === path;
   };
 
   return (
@@ -54,57 +63,98 @@ const InsightsHeader = () => {
         {/* Mobile Menu */}
         <div
           className={`${
-            isMenuOpen ? "flex" : "hidden"
-          } md:hidden absolute top-full left-0 right-0 flex-col bg-white border-b border-gray-300 p-4`}
+            isMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          } md:hidden absolute top-full left-0 right-0 flex flex-col bg-white border-b border-gray-300 overflow-hidden transition-all duration-300 ease-in-out`}
         >
-          <button className="mb-4">
-            <Avatar className="size-10">
-              <AvatarImage src={"https://github.com/shadcn.png"} />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </button>
-          <Link
-            to="/"
-            className=" hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3"
-          >
-            Home
-          </Link>
-          <Link
-            to="/survey-insights"
-            className=" hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3"
-          >
-            Dashboard
-          </Link>
-          <Link
-            to="/survey"
-            className=" hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3"
-          >
-            Survey
-          </Link>
-          <Link
-            to="/survey"
-            className=" hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3"
-          >
-            Help and Support
-          </Link>
+          <div className="p-4">
+            <button className="mb-4">
+              <Avatar className="size-10">
+                <AvatarImage src={"https://github.com/shadcn.png"} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </button>
+            <Link
+              to="/"
+              onClick={handleLinkClick}
+              className={`hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3 w-full block rounded-lg ${
+                isActivePath("/") ? "font-extrabold bg-primary-100" : ""
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              to="/dashboard"
+              onClick={handleLinkClick}
+              className={`hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3 w-full block rounded-lg ${
+                isActivePath("/dashboard")
+                  ? "font-extrabold bg-primary-100"
+                  : ""
+              }`}
+            >
+              Dashboard
+            </Link>
+            <Link
+              to="/dashboard/survey-insights"
+              onClick={handleLinkClick}
+              className={`hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3 w-full block rounded-lg ${
+                isActivePath("/dashboard/survey-insights")
+                  ? "font-extrabold bg-primary-100"
+                  : ""
+              }`}
+            >
+              Survey
+            </Link>
+            <Link
+              to="/dashboard/help-support"
+              onClick={handleLinkClick}
+              className={`hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3 w-full block rounded-lg ${
+                isActivePath("/dashboard/help-support")
+                  ? "font-extrabold bg-primary-100"
+                  : ""
+              }`}
+            >
+              Help & Support
+            </Link>
 
-          <form className="flex flex-col gap-2 mt-4">
-            <input
-              type="search"
-              name="search"
-              placeholder="search anything"
-              id="search"
-              className="w-full py-3 px-6 border rounded-lg"
-            />
-          </form>
+            <form className="flex flex-col gap-2 mt-4">
+              <input
+                type="search"
+                name="search"
+                placeholder="search anything"
+                id="search"
+                className="w-full py-3 px-6 border rounded-lg"
+              />
+            </form>
+          </div>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-4 md:gap-8 items-center font-medium">
-          <Link to="/">Home</Link>
-          <Link to="/survey-insights">Dashboard</Link>
-          <Link to="/survey">Survey</Link>
-          <Link to="/Help and Support">Survey</Link>
+          <Link to="/" className={isActivePath("/") ? "font-extrabold" : ""}>
+            Home
+          </Link>
+          <Link
+            to="/dashboard"
+            className={isActivePath("/dashboard") ? "font-extrabold" : ""}
+          >
+            Dashboard
+          </Link>
+          <Link
+            to="/dashboard/survey-insights"
+            className={
+              isActivePath("/dashboard/survey-insights") ? "font-extrabold" : ""
+            }
+          >
+            Survey
+          </Link>
+          <Link
+            to="/dashboard/help-support"
+            className={
+              isActivePath("/dashboard/help-support") ? "font-extrabold" : ""
+            }
+          >
+            Help & Support
+          </Link>
         </div>
         <div className="hidden md:flex gap-6 items-center">
           <button>
@@ -128,7 +178,7 @@ const InsightsHeader = () => {
                   <p className="text-black/40 font-bold">johndoe@gmail.com</p>
                 </div>
                 <Link
-                  to="/survey-insights/settings"
+                  to="/dashboard/settings"
                   reloadDocument
                   className="text-primary-500 font-bold rounded-full py-1 px-5 border-2"
                 >

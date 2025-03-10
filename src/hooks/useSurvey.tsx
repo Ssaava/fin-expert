@@ -36,7 +36,7 @@ const useSurvey = () => {
   const handleExitSurvey = (): void => {
     localStorage.removeItem("surveyAnswers");
     localStorage.removeItem("surveyCurrentPage");
-    navigate("/survey-insights");
+    navigate("/dashboard/survey-insights");
   };
 
   const handleCloseSurvey = (): void => {

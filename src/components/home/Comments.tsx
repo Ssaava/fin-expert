@@ -62,8 +62,8 @@ export default function Comments() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="max-md:hidden" />
+        <CarouselNext className="max-md:hidden" />
       </Carousel>
       <CarouselDots
         totalDots={comments.length}

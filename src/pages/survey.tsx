@@ -7,7 +7,7 @@ const Survey = () => {
     <>
       <section className="min-h-screen w-screen bg-white px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6">
         <div className="flex justify-between py-8 mb-8">
-          <Link to="/survey-insights">
+          <Link to="/dashboard/survey-insights">
             <GoArrowLeft className="text-3xl" />
           </Link>
         </div>

@@ -14,6 +14,7 @@ import RegulatorSurvey from "./pages/regulator-survey";
 import ServiceProviderSurvey from "./pages/service-provider-survey";
 import Settings from "./pages/settings";
 import Survey from "./pages/survey";
+import Dashboard from "./pages/dashboard";
 
 const App = () => {
   return (
@@ -28,8 +29,9 @@ const App = () => {
         <Route path="service-provider" element={<ServiceProviderSurvey />} />
         <Route path="developer" element={<DeveloperSurvey />} />
       </Route>
-      <Route path="/survey-insights" element={<SurveyInsightsLayout />}>
-        <Route index element={<Insights />} />
+      <Route path="dashboard" element={<SurveyInsightsLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="survey-insights" element={<Insights />} />
         <Route path="settings" element={<Settings />} />
       </Route>
       <Route path="/auth" element={<AuthLayout />}>
