@@ -32,8 +32,18 @@ const HeroSection = () => {
           </div>
           <div className="xl:relative flex justify-center flex-col">
             <div className="flex flex-col gap-4 xl:absolute xl:top-[-3rem] xl:left-1/2 xl:-translate-x-1/2 xl:rotate-10 w-fit mx-auto">
-              <Recommendation />
-              <Recommendation />
+              <Recommendation
+                className="xl:w-[350px]"
+                title="Recommendation"
+                value="Improve user satisfaction: Act on feedback to boost your fintech
+          business in Kampala."
+              />
+              <Recommendation
+                className="xl:w-[350px]"
+                title="Recommendation"
+                value="Improve user satisfaction: Act on feedback to boost your fintech
+          business in Kampala."
+              />
             </div>
           </div>
         </div>
