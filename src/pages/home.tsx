@@ -25,8 +25,8 @@ const Home = () => {
             className="block w-full h-full object-cover"
           />
         </div>
-        <div className="gradient-light-blue-bg px-4 md:px-16 xl:px-56 py-10 md:py-16 rounded-3xl flex flex-col gap-16">
-          <h3 className="text-center text-white text-3xl md:text-6xl">
+        <div className="gradient-light-blue-bg px-4 md:px-16 xl:px-56 py-10 md:py-16 rounded-3xl flex flex-col gap-8 md:gap-14">
+          <h3 className="max-w-[55rem] font-bold mx-auto md:leading-18 text-center text-white text-3xl md:text-6xl">
             Ready to enhance financial inclusivity?
           </h3>
           <p className="text-center text-white text-xl">

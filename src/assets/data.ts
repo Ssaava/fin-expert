@@ -1,3 +1,4 @@
+import { ChartConfig } from "@/components/ui/chart";
 import { Question } from "./types";
 
 // Define the type for a single comment
@@ -817,3 +818,47 @@ export const developerSurveyQuestions: Question[] = [
 //   },
 //   //
 // ];
+
+export const fintechChartConfig = {
+  distributionTypes: {
+    label: "Fintechs",
+  },
+  investment: {
+    label: "Investment",
+    color: "hsl(var(--chart-1))",
+  },
+  payments: {
+    label: "Payments",
+    color: "hsl(var(--chart-1))",
+  },
+  lending: {
+    label: "Lending",
+    color: "hsl(var(--chart-1))",
+  },
+  savings: {
+    label: "Savings",
+    color: "hsl(var(--chart-1))",
+  },
+  insurance: {
+    label: "Insurance",
+    color: "hsl(var(--chart-1))",
+  },
+} satisfies ChartConfig;
+
+export const partnershipChartConfig = {
+  distributionTypes: {
+    label: "Distribution",
+  },
+  localBanks: {
+    label: "Local Banks",
+    color: "hsl(var(--chart-1))",
+  },
+  telecoms: {
+    label: "Telecoms",
+    color: "hsl(var(--chart-1))",
+  },
+  none: {
+    label: "None",
+    color: "hsl(var(--chart-1))",
+  },
+} satisfies ChartConfig;

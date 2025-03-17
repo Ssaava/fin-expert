@@ -1,9 +1,23 @@
-import HomePieChart from "@/components/home/PieChart";
+import { fintechChartConfig } from "@/assets/data";
+import PieChartComponent from "@/components/common/PieChartComponent";
 import { Recommendation } from "@/components/home/Recommendation";
 import { Score } from "@/components/home/Score";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { Link } from "react-router";
 import bgImage from "/hero.png";
+
+const fintechChartData = [
+  {
+    fintech: "investment",
+    distributionTypes: 275,
+    fill: "#3366CCB2",
+  },
+  { fintech: "payments", distributionTypes: 200, fill: "#3366CCD9" },
+  { fintech: "lending", distributionTypes: 187, fill: "#F44336CC" },
+  { fintech: "savings", distributionTypes: 173, fill: "#FFA726CC" },
+  { fintech: "insurance", distributionTypes: 90, fill: "#4CAF50CC" },
+]; // make sure api data matches this format to make the pie chart display
+
 const HeroSection = () => {
   return (
     <>
@@ -16,9 +30,9 @@ const HeroSection = () => {
           />
         </div>
         <div className="z-10 ">
-          <div className="z-10 max-w-[60rem]  mx-auto w-full flex flex-col gap-6">
+          <div className="z-10 max-w-[65rem]  mx-auto w-full flex flex-col gap-6">
             <h2 className="text-4xl md:text-7xl text-center font-bold md:leading-24">
-              Access Financial Inclusivity With Confidence
+              Assess Financial Inclusivity With Confidence
             </h2>
             <p className="text-center max-w-[30rem] text-black/50 font-medium mx-auto">
               Empower your fintech platform with insights to enhance inclusivity
@@ -33,13 +47,19 @@ const HeroSection = () => {
           </div>
           <div className="grid xl:grid-cols-3 mt-10 gap-4 md:grid-cols-2">
             <div className="relative">
-              <HomePieChart />
+              <PieChartComponent
+                data={fintechChartData}
+                config={fintechChartConfig}
+                label="fintech"
+                title={"Fintech types distribution"}
+                className="xl:w-80 mx-auto xl:absolute xl:top-[-3rem] xl:left-1/2 xl:-translate-x-1/2 xl:-rotate-10"
+              />
             </div>
             <div>
               <Score />
             </div>
             <div className="xl:relative flex justify-center flex-col">
-              <div className="flex flex-col gap-4 xl:absolute xl:top-[-3rem] xl:left-1/2 xl:-translate-x-1/2 xl:rotate-10 w-fit mx-auto">
+              <div className="flex flex-col gap-4 xl:absolute xl:top-[-3rem] xl:left-1/2 xl:-translate-x-1/2 xl:rotate-8 w-fit mx-auto">
                 <Recommendation
                   className="xl:w-[350px]"
                   title="Recommendation"

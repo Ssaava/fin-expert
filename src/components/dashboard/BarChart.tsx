@@ -26,7 +26,7 @@ const chartData = [
 
 const chartConfig = {
   rating: {
-    label: "Desktop",
+    label: "Rating",
     color: "hsl(var(--chart-1))",
   },
 } satisfies ChartConfig;
@@ -73,7 +73,7 @@ export function BarChartComponent() {
               ticks={[0, 1, 2, 3, 4, 5]}
               domain={[0, 5]}
               label={{
-                value: "Percentage",
+                value: "User Satisfaction rate",
                 angle: -90,
                 position: "insideLeft",
                 fill: "black",

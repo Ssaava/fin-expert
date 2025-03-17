@@ -1,13 +1,17 @@
 import { Link } from "react-router";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    setIsAuthenticated(false);
+  }, [isAuthenticated]);
 
   return (
     <div className="fixed top-0 left-0 right-0 px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6 border-b border-gray-300 bg-white z-50">
@@ -68,18 +72,31 @@ const Header = () => {
           <Link to="/">Contact Us</Link>
         </div>
         <div className="hidden md:flex gap-4 items-center">
-          <Link
-            to="/auth/create-account"
-            className="cursor-pointer rounded-full bg-primary-500 px-6 py-3 hover:bg-black/90 text-white font-bold duration-200"
-          >
-            Create Account
-          </Link>
-          <Link
-            to="auth"
-            className="cursor-pointer rounded-full bg-gray-200 text-gray-900 hover:text-white hover:bg-black/90 duration-200 font-bold px-6 py-3"
-          >
-            Login
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="cursor-pointer rounded-full bg-primary-500 px-6 py-3 hover:bg-black/90 text-white font-bold duration-200"
+              >
+                Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/auth/create-account"
+                className="cursor-pointer rounded-full bg-primary-500 px-6 py-3 hover:bg-black/90 text-white font-bold duration-200"
+              >
+                Create Account
+              </Link>
+              <Link
+                to="auth"
+                className="cursor-pointer rounded-full bg-gray-200 text-gray-900 hover:text-white hover:bg-black/90 duration-200 font-bold px-6 py-3"
+              >
+                Login
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
