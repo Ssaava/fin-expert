@@ -16,9 +16,9 @@ const HeroSection = () => {
           />
         </div>
         <div className="z-10 ">
-          <div className="z-10 max-w-[60rem]  mx-auto w-full flex flex-col gap-6">
+          <div className="z-10 max-w-[65rem]  mx-auto w-full flex flex-col gap-6">
             <h2 className="text-4xl md:text-7xl text-center font-bold md:leading-24">
-              Access Financial Inclusivity With Confidence
+              Assess Financial Inclusivity With Confidence
             </h2>
             <p className="text-center max-w-[30rem] text-black/50 font-medium mx-auto">
               Empower your fintech platform with insights to enhance inclusivity
