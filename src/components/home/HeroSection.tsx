@@ -39,7 +39,7 @@ const HeroSection = () => {
               <Score />
             </div>
             <div className="xl:relative flex justify-center flex-col">
-              <div className="flex flex-col gap-4 xl:absolute xl:top-[-3rem] xl:left-1/2 xl:-translate-x-1/2 xl:rotate-10 w-fit mx-auto">
+              <div className="flex flex-col gap-4 xl:absolute xl:top-[-3rem] xl:left-1/2 xl:-translate-x-1/2 xl:rotate-8 w-fit mx-auto">
                 <Recommendation
                   className="xl:w-[350px]"
                   title="Recommendation"

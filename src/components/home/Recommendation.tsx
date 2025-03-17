@@ -15,7 +15,7 @@ export function Recommendation({ title, value, className }: Props) {
           <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-black/50">{value}</p>
+          <p className="text-black/70 font-medium">{value}</p>
         </CardContent>
       </div>
     </Card>
