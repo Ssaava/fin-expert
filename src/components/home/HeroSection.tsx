@@ -1,12 +1,12 @@
-import FinTechPieChart from "@/components/common/PieChart";
+import { fintechChartConfig } from "@/assets/data";
+import PieChartComponent from "@/components/common/PieChartComponent";
 import { Recommendation } from "@/components/home/Recommendation";
 import { Score } from "@/components/home/Score";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { Link } from "react-router";
-import { ChartConfig } from "../ui/chart";
 import bgImage from "/hero.png";
 
-const pieChartData = [
+const fintechChartData = [
   {
     fintech: "investment",
     distributionTypes: 275,
@@ -16,33 +16,7 @@ const pieChartData = [
   { fintech: "lending", distributionTypes: 187, fill: "#F44336CC" },
   { fintech: "savings", distributionTypes: 173, fill: "#FFA726CC" },
   { fintech: "insurance", distributionTypes: 90, fill: "#4CAF50CC" },
-];
-
-const pieChartConfig = {
-  distributionTypes: {
-    label: "Visitors",
-  },
-  investment: {
-    label: "Investment",
-    color: "hsl(var(--chart-1))",
-  },
-  payments: {
-    label: "Payments",
-    color: "hsl(var(--chart-1))",
-  },
-  lending: {
-    label: "Lending",
-    color: "hsl(var(--chart-1))",
-  },
-  savings: {
-    label: "Savings",
-    color: "hsl(var(--chart-1))",
-  },
-  insurance: {
-    label: "Insurance",
-    color: "hsl(var(--chart-1))",
-  },
-} satisfies ChartConfig;
+]; // make sure api data matches this format to make the pie chart display
 
 const HeroSection = () => {
   return (
@@ -73,11 +47,12 @@ const HeroSection = () => {
           </div>
           <div className="grid xl:grid-cols-3 mt-10 gap-4 md:grid-cols-2">
             <div className="relative">
-              <FinTechPieChart
-                data={pieChartData}
-                config={pieChartConfig}
+              <PieChartComponent
+                data={fintechChartData}
+                config={fintechChartConfig}
+                label="fintech"
                 title={"Fintech types distribution"}
-                className="flex flex-col w-full xl:w-80 mx-auto xl:absolute xl:top-[-3rem] xl:left-1/2 xl:-translate-x-1/2 xl:-rotate-10 pb-0"
+                className="xl:w-80 mx-auto xl:absolute xl:top-[-3rem] xl:left-1/2 xl:-translate-x-1/2 xl:-rotate-10"
               />
             </div>
             <div>

@@ -1,13 +1,44 @@
+import { fintechChartConfig, partnershipChartConfig } from "@/assets/data";
+import PieChartComponent from "@/components/common/PieChartComponent";
 import { BarChartComponent } from "@/components/dashboard/BarChart";
 import { DatePicker } from "@/components/dashboard/DatePicker";
 import GeographicalReachChart from "@/components/dashboard/GeographicalReachChart";
-import PartnershipPieChart from "@/components/dashboard/PartnershipPieChart";
-import PieChartComponent from "@/components/dashboard/PieChartComponent";
 import TargetCustomerSegments from "@/components/dashboard/TargetCustomerSegments";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { RxDownload } from "react-icons/rx";
 const options = ["Custom", "12 Months", "30 days", "7 days", "24 hours"];
+
+const partnershipChartData = [
+  {
+    partnership: "localBanks",
+    distributionTypes: 175,
+    fill: "var(--color-primary-500)",
+  },
+  {
+    partnership: "telecoms",
+    distributionTypes: 100,
+    fill: "var(--color-red-500)",
+  },
+  {
+    partnership: "none",
+    distributionTypes: 85,
+    fill: "var(--color-orange-500)",
+  },
+];
+
+const fintechChartData = [
+  {
+    fintech: "investment",
+    distributionTypes: 275,
+    fill: "#3366CCB2",
+  },
+  { fintech: "payments", distributionTypes: 200, fill: "#3366CCD9" },
+  { fintech: "lending", distributionTypes: 187, fill: "#F44336CC" },
+  { fintech: "savings", distributionTypes: 173, fill: "#FFA726CC" },
+  { fintech: "insurance", distributionTypes: 90, fill: "#4CAF50CC" },
+];
+
 const Dashboard = () => {
   const [formData, setFormData] = useState({
     date: "Custom",
@@ -67,7 +98,13 @@ const Dashboard = () => {
 
         <div className="grid lg:grid-cols-3 gap-4">
           <div className="lg:col-span-1 h-full bg-white rounded-lg shadow border ">
-            <PieChartComponent />
+            <PieChartComponent
+              data={fintechChartData}
+              config={fintechChartConfig}
+              label="fintech"
+              title={"Fintech types distribution"}
+              className="shadow-none border-0"
+            />
           </div>
           <div className="lg:col-span-2">
             <BarChartComponent />
@@ -83,7 +120,13 @@ const Dashboard = () => {
             <GeographicalReachChart />
           </div>
           <div className="lg:col-span-1 ">
-            <PartnershipPieChart />
+            <PieChartComponent
+              data={partnershipChartData}
+              config={partnershipChartConfig}
+              label="partnership"
+              title={"partnership types distribution"}
+              description="Fintech partnered with banks and telecoms"
+            />
           </div>
         </div>
       </section>
