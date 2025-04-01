@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Link } from "react-router";
 
-const options = ["Fintech User", "Regulator", "Service Provider", "Developer"];
+const options = ["fintech_user", "regulator", "service_provider", "developer"];
 const CreateAccount = () => {
   const [formData, setFormData] = useState({
     firstName: "",

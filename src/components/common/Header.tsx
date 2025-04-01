@@ -14,7 +14,7 @@ const Header = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className="fixed top-0 left-0 right-0 px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6 border-b border-gray-300 bg-white z-50">
+    <div className="max-w-max-width mx-auto fixed top-0 left-0 right-0 px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6 border-b border-gray-300 bg-white z-50">
       <div className="flex items-center gap-4 justify-between">
         <div>
           <h1 className="font-extrabold text-2xl">FinExpert</h1>

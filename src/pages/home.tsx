@@ -7,7 +7,7 @@ import { Link } from "react-router";
 import bgImage from "/inclusivity.png";
 const Home = () => {
   return (
-    <>
+    <main className="max-w-max-width mx-auto">
       <HeroSection />
       {/* metrics */}
       <MetricsSection />
@@ -41,7 +41,7 @@ const Home = () => {
           </Link>
         </div>
       </section>
-    </>
+    </main>
   );
 };
 

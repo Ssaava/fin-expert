@@ -5,7 +5,7 @@ import { FaXTwitter } from "react-icons/fa6";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="mt-auto py-6 md:py-6 px-6 sm:px-10 md:px-20 lg:px-28">
+    <div className="max-w-max-width mx-auto w-full mt-auto py-6 md:py-6 px-6 sm:px-10 md:px-20 lg:px-28">
       <div className="sm:flex sm:gap-4 sm:flex-wrap sm:justify-between sm:items-start">
         <div className="flex flex-col gap-4">
           <h1 className="font-extrabold text-2xl">FinExpert</h1>
