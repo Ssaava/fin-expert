@@ -8,6 +8,8 @@ const initialState = {
   authenticating: false,
   user: null,
 };
+
+const SERVER_URL = import.meta.env.VITE_SERVER;
 export const createLoginSlice: StateCreator<
   LoginState & RegisterState,
   [],
@@ -51,12 +53,12 @@ export const createRegisterSlice: StateCreator<
   registerUser: async (data: object) => {
     set({ authenticating: true });
     try {
-      const response = await axios.post("/api/register", data);
+      const response = await axios.post(`${SERVER_URL}/users/register`, data);
       set({ authenticating: false });
-      return response.data;
+      return response;
     } catch (error: any) {
       set({ authenticating: false });
-      return error.response.data;
+      return error.response;
     }
   },
 });
