@@ -141,7 +141,9 @@ button {
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 }
-
+@theme {
+  --spacing-max-width: 115.375rem;
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;
