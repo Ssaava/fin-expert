@@ -66,7 +66,7 @@ const App = () => {
           />
 
           <Route
-            path="service-provider"
+            path="service_provider"
             element={
               <CheckAuth
                 isAuthenticated={isAuthenticated}
