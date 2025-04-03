@@ -1,5 +1,5 @@
-import { regulatorSurveyQuestions } from "@/assets/data";
 import SurveyComponent from "@/components/survey/SurveyComponent";
+import useFetchQuestionnaire from "@/hooks/useFetchQuestionnaire";
 import useSurvey from "@/hooks/useSurvey";
 
 const RegulatorSurvey = () => {
@@ -15,11 +15,13 @@ const RegulatorSurvey = () => {
     handleCloseSurvey,
     handleExitSurvey,
   } = useSurvey();
+  const { questions } = useFetchQuestionnaire("regulators");
   return (
     <>
       <section className="pb-10">
         <SurveyComponent
-          questions={regulatorSurveyQuestions}
+          questions={questions}
+          isApiFormat={true}
           answers={answers}
           results={results}
           setAnswers={setAnswers}

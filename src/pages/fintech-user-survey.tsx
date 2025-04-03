@@ -1,5 +1,6 @@
-import { userSurveyQuestions } from "@/assets/data";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import SurveyComponent from "@/components/survey/SurveyComponent";
+import useFetchQuestionnaire from "@/hooks/useFetchQuestionnaire";
 import useSurvey from "@/hooks/useSurvey";
 const FintechUserSurvey = () => {
   const {
@@ -14,11 +15,13 @@ const FintechUserSurvey = () => {
     handleCloseSurvey,
     handleExitSurvey,
   } = useSurvey();
+  const { questions } = useFetchQuestionnaire("fintech_users");
   return (
     <>
       <section className="pb-10">
         <SurveyComponent
-          questions={userSurveyQuestions}
+          questions={questions}
+          isApiFormat={true}
           answers={answers}
           results={results}
           setAnswers={setAnswers}

@@ -7,3 +7,8 @@ export const RegisterSchema = z.object({
   password: z.string().nonempty("Password is required"),
   category: z.string().nonempty("Category is Required"),
 });
+export const LoginSchema = z.object({
+  email: z.string().email("Incorrect Email").nonempty("Email is Required"),
+  password: z.string().nonempty("Password is required"),
+  category: z.string().nonempty("Category is Required"),
+});
