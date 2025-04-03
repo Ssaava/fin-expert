@@ -1,17 +1,15 @@
 import { Link } from "react-router";
 import { Button } from "../ui/button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useAuthStore } from "@/store/store";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-  useEffect(() => {
-    setIsAuthenticated(false);
-  }, [isAuthenticated]);
+  const isAuthenticated = !!useAuthStore((state) => state.fin_token);
+  const userRole = useAuthStore((state) => state.user_role);
 
   return (
     <div className="max-w-max-width mx-auto fixed top-0 left-0 right-0 px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6 border-b border-gray-300 bg-white z-50">
@@ -72,7 +70,7 @@ const Header = () => {
           <Link to="/">Contact Us</Link>
         </div>
         <div className="hidden md:flex gap-4 items-center">
-          {isAuthenticated ? (
+          {isAuthenticated && userRole ? (
             <>
               <Link
                 to="/dashboard"
