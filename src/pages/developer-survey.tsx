@@ -1,5 +1,5 @@
-import { developerSurveyQuestions } from "@/assets/data";
 import SurveyComponent from "@/components/survey/SurveyComponent";
+import useFetchQuestionnaire from "@/hooks/useFetchQuestionnaire";
 import useSurvey from "@/hooks/useSurvey";
 
 const DeveloperSurvey = () => {
@@ -15,11 +15,13 @@ const DeveloperSurvey = () => {
     handleCloseSurvey,
     handleExitSurvey,
   } = useSurvey();
+  const { questions } = useFetchQuestionnaire("tech_providers");
   return (
     <>
       <section className="pb-10">
         <SurveyComponent
-          questions={developerSurveyQuestions}
+          questions={questions}
+          isApiFormat={true}
           answers={answers}
           results={results}
           setAnswers={setAnswers}
