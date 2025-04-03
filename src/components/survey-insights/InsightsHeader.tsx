@@ -1,23 +1,24 @@
-import { useState } from "react";
-import { CiSettings } from "react-icons/ci";
-import { IoSearchOutline } from "react-icons/io5";
-import { Link, useNavigate, useLocation } from "react-router";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { LiaSignOutAltSolid } from "react-icons/lia";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Separator } from "@/components/ui/separator";
+import { useAuthStore } from "@/store/store";
+import { useState } from "react";
+import { CiSettings } from "react-icons/ci";
+import { IoSearchOutline } from "react-icons/io5";
+import { LiaSignOutAltSolid } from "react-icons/lia";
+import { Link, useLocation } from "react-router";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const InsightsHeader = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const logOut = useAuthStore((state) => state.logoutUser);
 
-  const handleSignOut = () => {
-    navigate("/");
+  const handleSignOut = async () => {
+    await logOut();
   };
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

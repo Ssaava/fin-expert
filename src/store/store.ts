@@ -1,6 +1,7 @@
 import {
   GetQuestionnaireState,
   LoginState,
+  LogoutState,
   RegisterState,
 } from "@/assets/types";
 import { create } from "zustand";
@@ -12,7 +13,7 @@ import {
 } from "./slices/authSlice";
 import { useQuestionnaireSlice } from "./slices/useQuestionnairSlice";
 
-export const useAuthStore = create<RegisterState & LoginState>()(
+export const useAuthStore = create<RegisterState & LoginState & LogoutState>()(
   persist(
     (...a) => ({
       ...createRegisterSlice(...a),
