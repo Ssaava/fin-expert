@@ -1,3 +1,6 @@
+import { LoginSchema } from "@/schemas/schema";
+import { z } from "zod";
+
 export interface Answer {
   [key: number]: string | string[];
 }
@@ -11,10 +14,10 @@ export interface Question {
 
 // auth interfaces
 export interface LoginState {
-  token: string;
+  fin_token: string;
   authenticating: boolean;
-  user: null;
-  loginUser: (data: object) => void;
+  user_role: null | string;
+  loginUser: (data: z.infer<typeof LoginSchema>) => void;
   checkAuth: () => void;
 }
 export interface RegisterState {
@@ -23,4 +26,8 @@ export interface RegisterState {
 
 export interface LogoutState {
   logoutUser: () => void;
+}
+
+export interface GetQuestionnaireState {
+  getQuestionnaire: (user_type: string) => void;
 }

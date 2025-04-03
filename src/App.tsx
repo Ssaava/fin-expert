@@ -17,19 +17,18 @@ import Survey from "./pages/survey";
 import Dashboard from "./pages/dashboard";
 import Unauthorized from "./pages/unauthorized";
 import CheckAuth from "./components/common/CheckAuth";
+import { useAuthStore } from "./store/store";
 
 const App = () => {
-  // These should come from your authentication context or state
-  const isAuthenticated = false; // Replace with actual auth state
-  const userRole = "fintech_user"; // Replace with actual user role ("fintech_user", "regulator", etc.)
-
+  const isAuthenticated = !!useAuthStore((state) => state.fin_token);
+  const userRole = useAuthStore((state) => state.user_role);
+  console.log(isAuthenticated, userRole);
   return (
     <Routes>
       <Route path="/" element={<LandingPageLayout />}>
         <Route index element={<Home />} />
       </Route>
 
-      {/* Protected routes - only for authenticated users */}
       <Route
         element={
           <CheckAuth isAuthenticated={!isAuthenticated} redirectTo="/" />
@@ -38,7 +37,6 @@ const App = () => {
         <Route path="/survey">
           <Route index element={<Survey />} />
 
-          {/* Fintech User Survey - only for fintech_user role */}
           <Route
             path="fintech_user"
             element={
@@ -46,14 +44,13 @@ const App = () => {
                 isAuthenticated={isAuthenticated}
                 redirectTo="/"
                 requiredRole="fintech_user"
-                userRole={userRole}
+                userRole={userRole as string}
               >
                 <FintechUserSurvey />
               </CheckAuth>
             }
           />
 
-          {/* Regulator Survey - only for regulator role */}
           <Route
             path="regulator"
             element={
@@ -61,7 +58,7 @@ const App = () => {
                 isAuthenticated={isAuthenticated}
                 redirectTo="/"
                 requiredRole="regulator"
-                userRole={userRole}
+                userRole={userRole as string}
               >
                 <RegulatorSurvey />
               </CheckAuth>
@@ -75,7 +72,7 @@ const App = () => {
                 isAuthenticated={isAuthenticated}
                 redirectTo="/"
                 requiredRole="service_provider"
-                userRole={userRole}
+                userRole={userRole as string}
               >
                 <ServiceProviderSurvey />
               </CheckAuth>
@@ -89,7 +86,7 @@ const App = () => {
                 isAuthenticated={isAuthenticated}
                 redirectTo="/"
                 requiredRole="developer"
-                userRole={userRole}
+                userRole={userRole as string}
               >
                 <DeveloperSurvey />
               </CheckAuth>

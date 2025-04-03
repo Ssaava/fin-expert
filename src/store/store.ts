@@ -1,4 +1,8 @@
-import { LoginState, RegisterState } from "@/assets/types";
+import {
+  GetQuestionnaireState,
+  LoginState,
+  RegisterState,
+} from "@/assets/types";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import {
@@ -6,6 +10,7 @@ import {
   createRegisterSlice,
   createLogoutSlice,
 } from "./slices/authSlice";
+import { useQuestionnaireSlice } from "./slices/useQuestionnairSlice";
 
 export const useAuthStore = create<RegisterState & LoginState>()(
   persist(
@@ -17,10 +22,22 @@ export const useAuthStore = create<RegisterState & LoginState>()(
     {
       name: "auth-store",
       partialize: (state) => ({
-        token: state.token,
-        user: state.user,
+        token: state.fin_token,
+        user: state.user_role,
       }),
       storage: createJSONStorage(() => sessionStorage),
+    }
+  )
+);
+
+export const useQuestionnaireStore = create<GetQuestionnaireState>()(
+  persist(
+    (...a) => ({
+      ...useQuestionnaireSlice(...a),
+    }),
+    {
+      name: "questionnaire-store",
+      partialize: () => ({}),
     }
   )
 );

@@ -15,9 +15,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { IoMdCheckmark } from "react-icons/io";
+import { ApiQuestion, transformApiQuestions } from "@/lib/utils";
 
 interface Props {
-  questions: Question[];
+  questions: Question[] | ApiQuestion[];
   answers: Answer;
   setAnswers: Dispatch<SetStateAction<Answer>>;
   isSubmitted: boolean;
@@ -28,6 +29,7 @@ interface Props {
   handleSubmit: () => void;
   handleCloseSurvey: () => void;
   handleExitSurvey: () => void;
+  isApiFormat?: boolean; // Add this prop to indicate API format
 }
 
 const QuestionComponents = ({
@@ -42,7 +44,13 @@ const QuestionComponents = ({
   handleSubmit,
   handleCloseSurvey,
   handleExitSurvey,
+  isApiFormat = false, // Default to false for backward compatibility
 }: Props) => {
+  // Transform questions if they're in API format
+  const normalizedQuestions = isApiFormat
+    ? transformApiQuestions(questions as ApiQuestion[])
+    : (questions as Question[]);
+
   useEffect(() => {
     const savedAnswers = localStorage.getItem("surveyAnswers");
     const savedPage = localStorage.getItem("surveyCurrentPage");
@@ -83,13 +91,11 @@ const QuestionComponents = ({
   };
 
   const questionsPerPage = 5;
-  const totalPages = Math.ceil(questions.length / questionsPerPage);
-
+  const totalPages = Math.ceil(normalizedQuestions.length / questionsPerPage);
   const progress: number = ((currentPage + 1) / totalPages) * 100;
-
   const startIndex: number = currentPage * questionsPerPage;
   const endIndex: number = startIndex + questionsPerPage;
-  const currentQuestions: Question[] = questions.slice(startIndex, endIndex);
+  const currentQuestions = normalizedQuestions.slice(startIndex, endIndex);
 
   // Check if all questions on the current page are answered
   const isCurrentPageComplete = currentQuestions.every((question, index) => {

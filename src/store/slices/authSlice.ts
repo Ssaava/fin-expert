@@ -2,11 +2,13 @@
 import { LoginState, LogoutState, RegisterState } from "@/assets/types";
 import { StateCreator } from "zustand";
 import axios from "axios";
+import { z } from "zod";
+import { LoginSchema } from "@/schemas/schema";
 
 const initialState = {
-  token: "",
+  fin_token: "",
   authenticating: false,
-  user: null,
+  user_role: null,
 };
 
 const SERVER_URL = import.meta.env.VITE_SERVER;
@@ -17,17 +19,16 @@ export const createLoginSlice: StateCreator<
   LoginState
 > = (set, get) => ({
   ...initialState,
-  loginUser: async (data: object) => {
+  loginUser: async (data: z.infer<typeof LoginSchema>) => {
     set({ authenticating: true });
     try {
       const response = await axios.post(`${SERVER_URL}/users/login`, data);
-      // set({
-      //   token: response.data.token,
-      //   user: response.data,
-      //   authenticating: false,
-      // });
+      set({
+        fin_token: response.data.access_token,
+        user_role: data.category,
+        authenticating: false,
+      });
 
-      console.log(response);
       return response;
     } catch (error: any) {
       set({ authenticating: false });
@@ -36,7 +37,7 @@ export const createLoginSlice: StateCreator<
   },
   checkAuth: async () => {
     try {
-      const token = get().token;
+      const token = get().fin_token;
       console.log(token);
       const response = await axios.get("/api/auth");
       return response.data;

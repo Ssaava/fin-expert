@@ -37,8 +37,10 @@ const Login = () => {
     const validForm = LoginSchema.safeParse(formData);
     if (validForm.success) {
       const response: any = await loginUser(formData);
-      if (response.status == 201) {
-        toast.success(response.data.message);
+      if (response.status == 200) {
+        toast.success("User logged in Successfully", {
+          description: response.data.message,
+        });
         setFormData({ ...formDataInitials });
       } else {
         toast.error("An Error Occurred", {

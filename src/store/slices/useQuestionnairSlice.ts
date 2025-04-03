@@ -1,0 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { GetQuestionnaireState } from "@/assets/types";
+import axios from "axios";
+import { StateCreator } from "zustand";
+const SERVER_URL = import.meta.env.VITE_SERVER;
+export const useQuestionnaireSlice: StateCreator<
+  GetQuestionnaireState,
+  [],
+  [],
+  GetQuestionnaireState
+> = () => ({
+  getQuestionnaire: async (user_type: string) => {
+    try {
+      const response = await axios.get(
+        `${SERVER_URL}/rag/questionnaire/${user_type}`
+      );
+      return response;
+    } catch (error: any) {
+      return error.response;
+    }
+  },
+});
