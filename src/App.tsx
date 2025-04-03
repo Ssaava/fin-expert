@@ -23,6 +23,7 @@ const App = () => {
   const isAuthenticated = !!useAuthStore((state) => state.fin_token);
   const userRole = useAuthStore((state) => state.user_role);
   console.log(isAuthenticated, userRole);
+
   return (
     <Routes>
       <Route path="/" element={<LandingPageLayout />}>
