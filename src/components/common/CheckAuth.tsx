@@ -1,12 +1,12 @@
-// components/check-auth.tsx
 import { Navigate, Outlet, useLocation } from "react-router";
 
 interface CheckAuthProps {
   isAuthenticated: boolean;
   redirectTo: string;
   requiredRole?: string | string[];
-  userRole?: string;
+  userRole?: string | null;
   children?: React.ReactNode;
+  allowUnauthenticated?: boolean; // New prop for routes that don't require auth
 }
 
 const CheckAuth = ({
@@ -15,28 +15,32 @@ const CheckAuth = ({
   requiredRole,
   userRole,
   children,
+  allowUnauthenticated = false, // Default to false for protected routes
 }: CheckAuthProps) => {
   const location = useLocation();
 
-  // If route requires authentication but user isn't authenticated
-  if (requiredRole !== undefined && !isAuthenticated) {
-    return <Navigate to={redirectTo} state={{ from: location }} replace />;
-  }
-
-  // If route requires a specific role but user doesn't have it
-  if (requiredRole && userRole) {
-    const hasRequiredRole = Array.isArray(requiredRole)
-      ? requiredRole.includes(userRole)
-      : requiredRole === userRole;
-
-    if (!hasRequiredRole) {
-      return <Navigate to="/unauthorized" replace />;
-    }
-  }
-
-  // If route is for auth pages but user is already authenticated
-  if (requiredRole === undefined && isAuthenticated) {
+  // Handle routes that explicitly allow unauthenticated access
+  if (allowUnauthenticated && isAuthenticated) {
     return <Navigate to={redirectTo} replace />;
+  }
+
+  // Handle protected routes
+  if (!allowUnauthenticated) {
+    // Redirect to login if not authenticated
+    if (!isAuthenticated) {
+      return <Navigate to="/auth" state={{ from: location }} replace />;
+    }
+
+    // Check role requirements if specified
+    if (requiredRole && userRole) {
+      const hasRequiredRole = Array.isArray(requiredRole)
+        ? requiredRole.includes(userRole)
+        : requiredRole === userRole;
+
+      if (!hasRequiredRole) {
+        return <Navigate to="/unauthorized" replace />;
+      }
+    }
   }
 
   return children ? children : <Outlet />;
