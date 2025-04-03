@@ -21,7 +21,7 @@ import { useAuthStore } from "./store/store";
 
 const App = () => {
   const isAuthenticated = !!useAuthStore((state) => state.fin_token);
-  const userRole = useAuthStore((state) => state.user_role);
+  const userRole: string | null = useAuthStore((state) => state.user_role);
 
   return (
     <Routes>
@@ -31,81 +31,10 @@ const App = () => {
 
       <Route
         element={
-          <CheckAuth isAuthenticated={!isAuthenticated} redirectTo="/" />
-        }
-      >
-        <Route path="/survey">
-          <Route index element={<Survey />} />
-
-          <Route
-            path="fintech_user"
-            element={
-              <CheckAuth
-                isAuthenticated={isAuthenticated}
-                redirectTo="/"
-                requiredRole="fintech_user"
-                userRole={userRole as string}
-              >
-                <FintechUserSurvey />
-              </CheckAuth>
-            }
-          />
-
-          <Route
-            path="regulator"
-            element={
-              <CheckAuth
-                isAuthenticated={isAuthenticated}
-                redirectTo="/"
-                requiredRole="regulator"
-                userRole={userRole as string}
-              >
-                <RegulatorSurvey />
-              </CheckAuth>
-            }
-          />
-
-          <Route
-            path="service_provider"
-            element={
-              <CheckAuth
-                isAuthenticated={isAuthenticated}
-                redirectTo="/"
-                requiredRole="service_provider"
-                userRole={userRole as string}
-              >
-                <ServiceProviderSurvey />
-              </CheckAuth>
-            }
-          />
-
-          <Route
-            path="developer"
-            element={
-              <CheckAuth
-                isAuthenticated={isAuthenticated}
-                redirectTo="/"
-                requiredRole="developer"
-                userRole={userRole as string}
-              >
-                <DeveloperSurvey />
-              </CheckAuth>
-            }
-          />
-        </Route>
-
-        <Route path="dashboard" element={<SurveyInsightsLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="survey-insights" element={<Insights />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      </Route>
-
-      <Route
-        element={
           <CheckAuth
             isAuthenticated={isAuthenticated}
             redirectTo="/dashboard"
+            allowUnauthenticated={true}
           />
         }
       >
@@ -116,8 +45,84 @@ const App = () => {
       </Route>
       <Route path="account-verification" element={<AccountVerification />} />
       <Route path="password-reset" element={<ResetPassword />} />
+      {/* Protected routes - require authentication */}
+      <Route
+        element={
+          <CheckAuth isAuthenticated={isAuthenticated} redirectTo="/auth" />
+        }
+      >
+        {/* Survey routes with role protection */}
+        <Route path="/survey">
+          <Route index element={<Survey />} />
+
+          <Route
+            path="fintech_user"
+            element={
+              <CheckAuth
+                requiredRole="fintech_user"
+                userRole={userRole}
+                isAuthenticated={isAuthenticated}
+                redirectTo="/unauthorized"
+              >
+                <FintechUserSurvey />
+              </CheckAuth>
+            }
+          />
+
+          <Route
+            path="regulator"
+            element={
+              <CheckAuth
+                requiredRole="regulator"
+                userRole={userRole}
+                isAuthenticated={isAuthenticated}
+                redirectTo="/unauthorized"
+              >
+                <RegulatorSurvey />
+              </CheckAuth>
+            }
+          />
+
+          <Route
+            path="service_provider"
+            element={
+              <CheckAuth
+                requiredRole="service_provider"
+                userRole={userRole}
+                isAuthenticated={isAuthenticated}
+                redirectTo="/unauthorized"
+              >
+                <ServiceProviderSurvey />
+              </CheckAuth>
+            }
+          />
+
+          <Route
+            path="developer"
+            element={
+              <CheckAuth
+                requiredRole="developer"
+                userRole={userRole}
+                isAuthenticated={isAuthenticated}
+                redirectTo="/unauthorized"
+              >
+                <DeveloperSurvey />
+              </CheckAuth>
+            }
+          />
+        </Route>
+
+        {/* Dashboard routes - require authentication but no specific role */}
+        <Route path="dashboard" element={<SurveyInsightsLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="survey-insights" element={<Insights />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+      </Route>
+
+      {/* Other routes */}
       <Route path="/unauthorized" element={<Unauthorized />} />
-      <Route path="*" element={<div>404</div>}></Route>
+      <Route path="*" element={<div>404</div>} />
     </Routes>
   );
 };
