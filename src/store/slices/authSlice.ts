@@ -20,16 +20,18 @@ export const createLoginSlice: StateCreator<
   loginUser: async (data: object) => {
     set({ authenticating: true });
     try {
-      const response = await axios.post("/api/login", data);
-      set({
-        token: response.data.token,
-        user: response.data,
-        authenticating: false,
-      });
-      return response.data;
+      const response = await axios.post(`${SERVER_URL}/users/login`, data);
+      // set({
+      //   token: response.data.token,
+      //   user: response.data,
+      //   authenticating: false,
+      // });
+
+      console.log(response);
+      return response;
     } catch (error: any) {
       set({ authenticating: false });
-      return error.response.data;
+      return error.response;
     }
   },
   checkAuth: async () => {

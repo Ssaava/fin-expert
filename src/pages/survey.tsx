@@ -28,7 +28,7 @@ const Survey = () => {
               className="block max-w-[35rem] w-full mx-auto object-cover my-4 md:my-12"
             />
             <Link
-              to={"/survey/user"}
+              to={"/survey/fintech_user"}
               className="cursor-pointer rounded-full  bg-primary-500 flex items-center gap-2 text-lg w-fit mx-auto py-4 hover:bg-black duration-200 px-8 font-bold text-white"
             >
               <FaPlay className="size-4" /> Get Started

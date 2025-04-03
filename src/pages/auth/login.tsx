@@ -1,22 +1,59 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from "@/components/common/Input";
 import { Button } from "@/components/ui/button";
+import { LoginSchema } from "@/schemas/schema";
+import { useAuthStore } from "@/store/store";
 import { useState } from "react";
 import { Link } from "react-router";
+import { toast } from "sonner";
+import { z } from "zod";
 
+const options = ["fintech_user", "regulator", "service_provider", "developer"];
+const formDataInitials = {
+  email: "",
+  password: "",
+  category: "",
+};
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+  const [formData, setFormData] = useState<z.infer<typeof LoginSchema>>({
+    ...formDataInitials,
   });
+  const [errors, setErrors] = useState<z.infer<typeof LoginSchema>>({
+    ...formDataInitials,
+  });
+
+  const loginUser = useAuthStore((state) => state.loginUser);
+  const isAuthenticating = useAuthStore((state) => state.authenticating);
 
   const handleInputChange = (e: {
     target: { name: string; value: string };
   }) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors({ ...formDataInitials });
   };
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const validForm = LoginSchema.safeParse(formData);
+    if (validForm.success) {
+      const response: any = await loginUser(formData);
+      if (response.status == 201) {
+        toast.success(response.data.message);
+        setFormData({ ...formDataInitials });
+      } else {
+        toast.error("An Error Occurred", {
+          description: response.data.detail,
+        });
+      }
+    } else {
+      const formErrors = Array(validForm.error.errors)[0];
+      formErrors.map((error) => {
+        setErrors((prev) => ({
+          ...prev,
+          [error.path[0]]: error.message,
+        }));
+      });
+    }
   };
 
   return (
@@ -32,6 +69,7 @@ const Login = () => {
             onChange={handleInputChange}
             value={formData.email}
             label="email"
+            error={errors.email}
           />
           <Input
             name="password"
@@ -39,6 +77,7 @@ const Login = () => {
             label="Password"
             type="password"
             value={formData.password}
+            error={errors.password}
           />
           <Link
             to="/auth"
@@ -47,11 +86,37 @@ const Login = () => {
             Forgot Password
           </Link>
 
+          <div className="flex gap-4 flex-wrap  w-full">
+            {options?.map((option, optionIndex) => (
+              <label
+                key={optionIndex}
+                className={`hover:border-primary-500 hover:text-primary-500 hover:bg-blue-50 duration-200 flex items-center justify-center  py-2 px-4  rounded-lg border ${
+                  formData.category === option
+                    ? "border-primary-500 text-primary-500 bg-blue-50"
+                    : "border-gray-300"
+                }`}
+              >
+                <input
+                  name="category"
+                  onChange={handleInputChange}
+                  type="radio"
+                  className="hidden"
+                  value={option}
+                  checked={formData.category === option}
+                />
+                {option}
+              </label>
+            ))}
+          </div>
+          {errors.category && (
+            <span className="text-sm text-red-500">{errors.category}</span>
+          )}
+
           <Button
             type="submit"
             className="bg-primary-500 text-lg font-bold mx-auto py-6 px-12 max-w-[20rem] w-full"
           >
-            Login
+            {isAuthenticating ? "...logging in" : "login"}
           </Button>
         </form>
 
