@@ -24,7 +24,7 @@ export const useAuthStore = create<RegisterState & LoginState & LogoutState>()(
       name: "auth-store",
       partialize: (state) => ({
         fin_token: state.fin_token,
-        user_role: state.user_role,
+        user_category: state.user_category,
       }),
       storage: createJSONStorage(() => sessionStorage),
     }

@@ -17,10 +17,9 @@ export const createLoginSlice: StateCreator<
   [],
   [],
   LoginState
-> = (set, get) => ({
+> = (set) => ({
   ...initialState,
   loginUser: async (data: z.infer<typeof LoginSchema>) => {
-    console.log("User Data: ", data);
     set({ authenticating: true });
     try {
       const response = await axios.post(`${SERVER_URL}/users/login`, data);
@@ -38,8 +37,6 @@ export const createLoginSlice: StateCreator<
   },
   checkAuth: async () => {
     try {
-      const token = get().fin_token;
-      console.log(token);
       const response = await axios.get("/api/auth");
       return response.data;
     } catch (error: any) {

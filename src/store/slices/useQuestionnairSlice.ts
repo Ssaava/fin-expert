@@ -9,10 +9,15 @@ export const useQuestionnaireSlice: StateCreator<
   [],
   GetQuestionnaireState
 > = () => ({
-  getQuestionnaire: async (user_type: string) => {
+  getQuestionnaire: async (user_type: string, token) => {
     try {
       const response = await axios.get(
-        `${SERVER_URL}/questionnaire/${user_type}`
+        `${SERVER_URL}/questionnaire/${user_type}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       return response.data;

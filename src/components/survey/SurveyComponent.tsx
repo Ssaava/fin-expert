@@ -1,9 +1,5 @@
-import { Answer, Question } from "@/assets/types";
+import { Answer } from "@/assets/types";
 import { Button } from "@/components/ui/button";
-import { Dispatch, SetStateAction, useEffect } from "react";
-import { GoArrowLeft } from "react-icons/go";
-import { RxCross1 } from "react-icons/rx";
-import { Separator } from "../ui/separator";
 import {
   Dialog,
   DialogClose,
@@ -14,11 +10,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { IoMdCheckmark } from "react-icons/io";
 import { ApiQuestion, transformApiQuestions } from "@/lib/utils";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { GoArrowLeft } from "react-icons/go";
+import { IoMdCheckmark } from "react-icons/io";
+import { RxCross1 } from "react-icons/rx";
+import { Separator } from "../ui/separator";
 
 interface Props {
-  questions: Question[] | ApiQuestion[];
+  questions: ApiQuestion[];
   answers: Answer;
   setAnswers: Dispatch<SetStateAction<Answer>>;
   isSubmitted: boolean;
@@ -49,7 +49,7 @@ const QuestionComponents = ({
   // Transform questions if they're in API format
   const normalizedQuestions = isApiFormat
     ? transformApiQuestions(questions as ApiQuestion[])
-    : (questions as Question[]);
+    : (questions as ApiQuestion[]);
 
   useEffect(() => {
     const savedAnswers = localStorage.getItem("surveyAnswers");
@@ -96,7 +96,7 @@ const QuestionComponents = ({
   const startIndex: number = currentPage * questionsPerPage;
   const endIndex: number = startIndex + questionsPerPage;
   const currentQuestions = normalizedQuestions.slice(startIndex, endIndex);
-
+  console.log("into the surevy Component: ", currentQuestions);
   // Check if all questions on the current page are answered
   const isCurrentPageComplete = currentQuestions.every((question, index) => {
     const questionIndex = startIndex + index;
@@ -219,11 +219,11 @@ const QuestionComponents = ({
                   )}
                   {question.type === "radio" && (
                     <div className="flex flex-col gap-2">
-                      {question.options?.map((option, optionIndex) => (
+                      {question.options?.map(({ text, value }, optionIndex) => (
                         <label
                           key={optionIndex}
                           className={`flex items-center gap-6 rounded-lg border px-6 py-3  ${
-                            answers[startIndex + index] === option
+                            answers[startIndex + index] === value
                               ? "border-primary-500 text-primary-500 bg-blue-50"
                               : "border-gray-300"
                           }`}
@@ -232,25 +232,25 @@ const QuestionComponents = ({
                             type="radio"
                             className="hidden"
                             name={`question-${startIndex + index}`}
-                            value={option}
-                            checked={answers[startIndex + index] === option}
+                            value={value}
+                            checked={answers[startIndex + index] === value}
                             onChange={() =>
-                              handleInputChange(startIndex + index, option)
+                              handleInputChange(startIndex + index, value)
                             }
                           />
-                          {option}
+                          {text}
                         </label>
                       ))}
                     </div>
                   )}
                   {question.type === "checkbox" && (
                     <div className="flex flex-col gap-2">
-                      {question.options?.map((option, optionIndex) => (
+                      {question.options?.map(({ text, value }, optionIndex) => (
                         <label
                           key={optionIndex}
                           className={`flex items-center gap-6 flex-wr rounded-lg border px-6 py-3 ${
                             (answers[startIndex + index] as string[])?.includes(
-                              option
+                              value
                             )
                               ? "border-primary-500 text-primary-500 bg-blue-50"
                               : "border-gray-300"
@@ -259,17 +259,17 @@ const QuestionComponents = ({
                           <input
                             type="checkbox"
                             className="hidden"
-                            value={option}
+                            value={value}
                             checked={(
                               answers[startIndex + index] as string[]
-                            )?.includes(option)}
+                            )?.includes(value)}
                             onChange={(e) => {
                               const selectedOptions =
                                 (answers[startIndex + index] as string[]) || [];
                               const updatedOptions = e.target.checked
-                                ? [...selectedOptions, option]
+                                ? [...selectedOptions, value]
                                 : selectedOptions.filter(
-                                    (item) => item !== option
+                                    (item) => item !== value
                                   );
                               handleInputChange(
                                 startIndex + index,
@@ -277,18 +277,18 @@ const QuestionComponents = ({
                               );
                             }}
                           />
-                          {option}
+                          {text}
                         </label>
                       ))}
                     </div>
                   )}
                   {question.type === "number-radio" && (
                     <div className="flex gap-2 max-sm:flex-wrap  w-full">
-                      {question.options?.map((option, optionIndex) => (
+                      {question.options?.map(({ text, value }, optionIndex) => (
                         <label
                           key={optionIndex}
                           className={`hover:border-primary-500 hover:text-primary-500 hover:bg-blue-50 duration-200 flex items-center justify-center sm:w-full py-2 px-4  rounded-lg border ${
-                            answers[startIndex + index] === option
+                            answers[startIndex + index] === value
                               ? "border-primary-500 text-primary-500 bg-blue-50"
                               : "border-gray-300"
                           }`}
@@ -297,13 +297,13 @@ const QuestionComponents = ({
                             type="radio"
                             className="hidden"
                             name={`question-${startIndex + index}`}
-                            value={option}
-                            checked={answers[startIndex + index] === option}
+                            value={value}
+                            checked={answers[startIndex + index] === value}
                             onChange={() =>
-                              handleInputChange(startIndex + index, option)
+                              handleInputChange(startIndex + index, value)
                             }
                           />
-                          {option}
+                          {text}
                         </label>
                       ))}
                     </div>

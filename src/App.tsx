@@ -1,5 +1,6 @@
 import Home from "@/pages/home";
 import { Route, Routes } from "react-router";
+import CheckAuth from "./components/common/CheckAuth";
 import AuthLayout from "./layouts/auth-layout";
 import LandingPageLayout from "./layouts/landing-page-layout";
 import SurveyInsightsLayout from "./layouts/survey-insights-layout";
@@ -7,22 +8,18 @@ import AccountVerification from "./pages/auth/account-verification";
 import CreateAccount from "./pages/auth/create-account";
 import Login from "./pages/auth/login";
 import ResetPassword from "./pages/auth/reset-password";
-import DeveloperSurvey from "./pages/developer-survey";
-import FintechUserSurvey from "./pages/fintech-user-survey";
+import Dashboard from "./pages/dashboard";
 import Insights from "./pages/insights";
-import RegulatorSurvey from "./pages/regulator-survey";
-import ServiceProviderSurvey from "./pages/service-provider-survey";
 import Settings from "./pages/settings";
 import Survey from "./pages/survey";
-import Dashboard from "./pages/dashboard";
 import Unauthorized from "./pages/unauthorized";
-import CheckAuth from "./components/common/CheckAuth";
+import UserSurvey from "./pages/user-survey";
 import { useAuthStore } from "./store/store";
 
 const App = () => {
   const isAuthenticated = !!useAuthStore((state) => state.fin_token);
-  const userRole: string | null = useAuthStore((state) => state.user_role);
-
+  const user_category = useAuthStore((state) => state.user_category);
+  console.log(user_category);
   return (
     <Routes>
       <Route path="/" element={<LandingPageLayout />}>
@@ -54,59 +51,16 @@ const App = () => {
         {/* Survey routes with role protection */}
         <Route path="/survey">
           <Route index element={<Survey />} />
-
           <Route
-            path="fintech_user"
+            path={user_category as string}
             element={
               <CheckAuth
-                requiredRole="fintech_user"
-                userRole={userRole}
+                requiredRole={user_category as string}
+                userRole={user_category}
                 isAuthenticated={isAuthenticated}
                 redirectTo="/unauthorized"
               >
-                <FintechUserSurvey />
-              </CheckAuth>
-            }
-          />
-
-          <Route
-            path="regulator"
-            element={
-              <CheckAuth
-                requiredRole="regulator"
-                userRole={userRole}
-                isAuthenticated={isAuthenticated}
-                redirectTo="/unauthorized"
-              >
-                <RegulatorSurvey />
-              </CheckAuth>
-            }
-          />
-
-          <Route
-            path="service_provider"
-            element={
-              <CheckAuth
-                requiredRole="service_provider"
-                userRole={userRole}
-                isAuthenticated={isAuthenticated}
-                redirectTo="/unauthorized"
-              >
-                <ServiceProviderSurvey />
-              </CheckAuth>
-            }
-          />
-
-          <Route
-            path="developer"
-            element={
-              <CheckAuth
-                requiredRole="developer"
-                userRole={userRole}
-                isAuthenticated={isAuthenticated}
-                redirectTo="/unauthorized"
-              >
-                <DeveloperSurvey />
+                <UserSurvey />
               </CheckAuth>
             }
           />
