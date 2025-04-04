@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import surveyIntro from "/survey-intro.png";
 import { useAuthStore } from "@/store/store";
 const Survey = () => {
-  const user_role = useAuthStore((state) => state.user_role);
+  const user_category = useAuthStore((state) => state.user_category);
   return (
     <>
       <section className="min-h-screen w-screen bg-white px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6">
@@ -30,7 +30,7 @@ const Survey = () => {
               className="block max-w-[35rem] w-full mx-auto object-cover my-4 md:my-12"
             />
             <Link
-              to={`/survey/${user_role}`}
+              to={`/survey/${user_category}`}
               className="cursor-pointer rounded-full  bg-primary-500 flex items-center gap-2 text-lg w-fit mx-auto py-4 hover:bg-black duration-200 px-8 font-bold text-white"
             >
               <FaPlay className="size-4" /> Get Started

@@ -8,12 +8,29 @@ export const useQuestionnaireSlice: StateCreator<
   [],
   [],
   GetQuestionnaireState
-> = () => ({
-  getQuestionnaire: async (user_type: string) => {
+> = (set) => ({
+  fetchingQuestionnaire: false,
+  getQuestionnaire: async (user_type: string, token) => {
+    set({ fetchingQuestionnaire: true });
     try {
       const response = await axios.get(
-        `${SERVER_URL}/rag/questionnaire/${user_type}`
+        `${SERVER_URL}/questionnaire/${user_type}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
+      set({ fetchingQuestionnaire: false });
+      return response.data;
+    } catch (error: any) {
+      set({ fetchingQuestionnaire: false });
+      return error.response;
+    }
+  },
+  getUserTypes: async () => {
+    try {
+      const response = await axios.get(`${SERVER_URL}/questionnaire/types`);
       return response;
     } catch (error: any) {
       return error.response;

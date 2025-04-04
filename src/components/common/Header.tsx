@@ -9,7 +9,7 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const isAuthenticated = !!useAuthStore((state) => state.fin_token);
-  const userRole = useAuthStore((state) => state.user_role);
+  const user_category = useAuthStore((state) => state.user_category);
 
   return (
     <div className="max-w-max-width mx-auto fixed top-0 left-0 right-0 px-6 sm:px-10 md:px-20 lg:px-28 py-4 sm:py-6 border-b border-gray-300 bg-white z-50">
@@ -70,7 +70,7 @@ const Header = () => {
           <Link to="/">Contact Us</Link>
         </div>
         <div className="hidden md:flex gap-4 items-center">
-          {isAuthenticated && userRole ? (
+          {isAuthenticated && user_category ? (
             <>
               <Link
                 to="/dashboard"

@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Question } from "@/assets/types";
 import { ApiQuestion } from "@/lib/utils";
-import { useQuestionnaireStore } from "@/store/store";
+import { useAuthStore, useQuestionnaireStore } from "@/store/store";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 const useFetchQuestionnaire = (user_type: string) => {
-  const [questions, setQuestions] = useState<Question[] | ApiQuestion[]>([]);
+  const [questions, setQuestions] = useState<ApiQuestion[]>([]);
 
   const getQuestions = useQuestionnaireStore((state) => state.getQuestionnaire);
+  const token = useAuthStore((state) => state.fin_token);
 
   useEffect(() => {
     const getFintechQuestions = async () => {
-      const response: any = await getQuestions(user_type);
-      if (response.status == 200) {
-        setQuestions(response.data);
+      const response: any = await getQuestions(user_type, token);
+      if (response) {
+        setQuestions(response.questions);
       } else {
         toast.error("Failed to fetch user Questions");
       }
     };
     getFintechQuestions();
-  }, [getQuestions, user_type]);
+  }, [getQuestions, token, user_type]);
   return {
     questions,
   };
