@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { UserTypes } from "@/assets/types";
 import { Input } from "@/components/common/Input";
 import { Button } from "@/components/ui/button";
 import { RegisterSchema } from "@/schemas/schema";
-import { useAuthStore } from "@/store/store";
-import { useState } from "react";
+import { useAuthStore, useQuestionnaireStore } from "@/store/store";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 import { z } from "zod";
 
-const options = ["fintech_user", "regulator", "service_provider", "developer"];
+// const options = ["fintech_user", "regulator", "service_provider", "developer"];
 const formDataInitials = {
   first_name: "",
   last_name: "",
@@ -23,10 +24,25 @@ const CreateAccount = () => {
   const [errors, setErrors] = useState<z.infer<typeof RegisterSchema>>({
     ...formDataInitials,
   });
+  const [options, setOptions] = useState<UserTypes[] | []>([]);
   const navigate = useNavigate();
   const registerUser = useAuthStore((state) => state.registerUser);
   const isAuthenticating = useAuthStore((state) => state.authenticating);
+  const getUserTypes = useQuestionnaireStore((state) => state.getUserTypes);
 
+  useEffect(() => {
+    const fetchUserTypes = async () => {
+      const response: any = await getUserTypes();
+      if (response.status == 200) {
+        setOptions(response.data);
+      } else {
+        toast.error("Failed to get user types", {
+          description: response.data.detail,
+        });
+      }
+    };
+    fetchUserTypes();
+  }, [getUserTypes]);
   const handleInputChange = (e: {
     target: { name: string; value: string };
   }) => {
@@ -58,7 +74,6 @@ const CreateAccount = () => {
       });
     }
   };
-
   return (
     <>
       <div className="vertical-spacing max-w-[40rem] w-full px-6 py-8 my-auto">
@@ -105,11 +120,11 @@ const CreateAccount = () => {
             Which Option Best Describes you
           </p>
           <div className="flex gap-4 flex-wrap  w-full">
-            {options?.map((option, optionIndex) => (
+            {options?.map(({ id, name }) => (
               <label
-                key={optionIndex}
+                key={id}
                 className={`hover:border-primary-500 hover:text-primary-500 hover:bg-blue-50 duration-200 flex items-center justify-center  py-2 px-4  rounded-lg border ${
-                  formData.category === option
+                  formData.category === id
                     ? "border-primary-500 text-primary-500 bg-blue-50"
                     : "border-gray-300"
                 }`}
@@ -119,10 +134,10 @@ const CreateAccount = () => {
                   onChange={handleInputChange}
                   type="radio"
                   className="hidden"
-                  value={option}
-                  checked={formData.category === option}
+                  value={id}
+                  checked={formData.category === id}
                 />
-                {option}
+                {name}
               </label>
             ))}
           </div>

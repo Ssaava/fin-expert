@@ -12,8 +12,17 @@ export const useQuestionnaireSlice: StateCreator<
   getQuestionnaire: async (user_type: string) => {
     try {
       const response = await axios.get(
-        `${SERVER_URL}/rag/questionnaire/${user_type}`
+        `${SERVER_URL}/questionnaire/${user_type}`
       );
+
+      return response.data;
+    } catch (error: any) {
+      return error.response;
+    }
+  },
+  getUserTypes: async () => {
+    try {
+      const response = await axios.get(`${SERVER_URL}/questionnaire/types`);
       return response;
     } catch (error: any) {
       return error.response;

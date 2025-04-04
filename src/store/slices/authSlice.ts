@@ -8,7 +8,7 @@ import { LoginSchema } from "@/schemas/schema";
 const initialState = {
   fin_token: "",
   authenticating: false,
-  user_role: null,
+  user_category: null,
 };
 
 const SERVER_URL = import.meta.env.VITE_SERVER;
@@ -20,12 +20,13 @@ export const createLoginSlice: StateCreator<
 > = (set, get) => ({
   ...initialState,
   loginUser: async (data: z.infer<typeof LoginSchema>) => {
+    console.log("User Data: ", data);
     set({ authenticating: true });
     try {
       const response = await axios.post(`${SERVER_URL}/users/login`, data);
       set({
         fin_token: response.data.access_token,
-        user_role: data.category,
+        user_category: response.data.category,
         authenticating: false,
       });
 

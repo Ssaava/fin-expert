@@ -16,7 +16,7 @@ export interface Question {
 export interface LoginState {
   fin_token: string;
   authenticating: boolean;
-  user_role: null | string;
+  user_category: string | null;
   loginUser: (data: z.infer<typeof LoginSchema>) => void;
   checkAuth: () => void;
 }
@@ -30,4 +30,9 @@ export interface LogoutState {
 
 export interface GetQuestionnaireState {
   getQuestionnaire: (user_type: string) => void;
+  getUserTypes: () => void;
 }
+export type UserTypes = {
+  id: "string";
+  name: "string";
+};

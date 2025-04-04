@@ -8,11 +8,9 @@ import { Link } from "react-router";
 import { toast } from "sonner";
 import { z } from "zod";
 
-const options = ["fintech_user", "regulator", "service_provider", "developer"];
 const formDataInitials = {
   email: "",
   password: "",
-  category: "",
 };
 const Login = () => {
   const [formData, setFormData] = useState<z.infer<typeof LoginSchema>>({
@@ -87,32 +85,6 @@ const Login = () => {
           >
             Forgot Password
           </Link>
-
-          <div className="flex gap-4 flex-wrap  w-full">
-            {options?.map((option, optionIndex) => (
-              <label
-                key={optionIndex}
-                className={`hover:border-primary-500 hover:text-primary-500 hover:bg-blue-50 duration-200 flex items-center justify-center  py-2 px-4  rounded-lg border ${
-                  formData.category === option
-                    ? "border-primary-500 text-primary-500 bg-blue-50"
-                    : "border-gray-300"
-                }`}
-              >
-                <input
-                  name="category"
-                  onChange={handleInputChange}
-                  type="radio"
-                  className="hidden"
-                  value={option}
-                  checked={formData.category === option}
-                />
-                {option}
-              </label>
-            ))}
-          </div>
-          {errors.category && (
-            <span className="text-sm text-red-500">{errors.category}</span>
-          )}
 
           <Button
             type="submit"
