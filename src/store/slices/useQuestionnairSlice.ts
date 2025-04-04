@@ -8,8 +8,10 @@ export const useQuestionnaireSlice: StateCreator<
   [],
   [],
   GetQuestionnaireState
-> = () => ({
+> = (set) => ({
+  fetchingQuestionnaire: false,
   getQuestionnaire: async (user_type: string, token) => {
+    set({ fetchingQuestionnaire: true });
     try {
       const response = await axios.get(
         `${SERVER_URL}/questionnaire/${user_type}`,
@@ -19,9 +21,10 @@ export const useQuestionnaireSlice: StateCreator<
           },
         }
       );
-
+      set({ fetchingQuestionnaire: false });
       return response.data;
     } catch (error: any) {
+      set({ fetchingQuestionnaire: false });
       return error.response;
     }
   },

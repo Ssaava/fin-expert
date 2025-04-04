@@ -11,10 +11,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ApiQuestion, transformApiQuestions } from "@/lib/utils";
+import { useQuestionnaireStore } from "@/store/store";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { GoArrowLeft } from "react-icons/go";
 import { IoMdCheckmark } from "react-icons/io";
 import { RxCross1 } from "react-icons/rx";
+import { LoadingOverlay } from "../common/Spinner";
 import { Separator } from "../ui/separator";
 
 interface Props {
@@ -46,7 +48,9 @@ const QuestionComponents = ({
   handleExitSurvey,
   isApiFormat = false, // Default to false for backward compatibility
 }: Props) => {
-  // Transform questions if they're in API format
+  const fetchingQuestionnaire = useQuestionnaireStore(
+    (state) => state.fetchingQuestionnaire
+  );
   const normalizedQuestions = isApiFormat
     ? transformApiQuestions(questions as ApiQuestion[])
     : (questions as ApiQuestion[]);
@@ -160,7 +164,9 @@ const QuestionComponents = ({
           </DialogContent>
         </Dialog>
       </div>
-
+      {fetchingQuestionnaire && (
+        <LoadingOverlay text="Fetching survey data..." />
+      )}
       {isSubmitted ? (
         <div className="flex justify-center">
           <div className="max-w-[50rem] w-full mx-auto flex flex-col gap-6">

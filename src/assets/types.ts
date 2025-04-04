@@ -29,6 +29,7 @@ export interface LogoutState {
 }
 
 export interface GetQuestionnaireState {
+  fetchingQuestionnaire: boolean;
   getQuestionnaire: (user_type: string, token: string) => void;
   getUserTypes: () => void;
 }
