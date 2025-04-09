@@ -32,6 +32,7 @@ interface Props {
   handleCloseSurvey: () => void;
   handleExitSurvey: () => void;
   isApiFormat?: boolean;
+  score: number;
 }
 
 const QuestionComponents = ({
@@ -47,6 +48,7 @@ const QuestionComponents = ({
   handleCloseSurvey,
   handleExitSurvey,
   isApiFormat = false,
+  score = 0,
 }: Props) => {
   const fetchingQuestionnaire = useQuestionnaireStore(
     (state) => state.fetchingQuestionnaire
@@ -183,7 +185,9 @@ const QuestionComponents = ({
             <Separator className="my-8 !h-[1.7px] !rounded-full" />
             <div className="flex flex-col gap-4 mt-8">
               <p className="text-center">Your inclusivity score</p>
-              <h3 className="text-center font-extrabold text-4xl">78/100</h3>
+              <h3 className="text-center font-extrabold text-4xl">
+                {score}/100
+              </h3>
               <div className="flex items-center justify-between w-full mt-12 md:mt-24 flex-wrap gap-4">
                 <Button
                   className="text-black/60 hover:text-white font-bold bg-gray-100 rounded-full !px-10 !py-5"
