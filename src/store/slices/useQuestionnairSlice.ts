@@ -10,6 +10,7 @@ export const useQuestionnaireSlice: StateCreator<
   GetQuestionnaireState
 > = (set) => ({
   fetchingQuestionnaire: false,
+  submittingQuestionnaire: false,
   getQuestionnaire: async (user_type: string, token) => {
     set({ fetchingQuestionnaire: true });
     try {
@@ -33,6 +34,26 @@ export const useQuestionnaireSlice: StateCreator<
       const response = await axios.get(`${SERVER_URL}/questionnaire/types`);
       return response;
     } catch (error: any) {
+      return error.response;
+    }
+  },
+
+  submitQuestionnaire: async (surveyResponse: any, token) => {
+    set({ submittingQuestionnaire: true });
+    try {
+      const response = await axios.post(
+        `${SERVER_URL}/questionnaire/submit`,
+        surveyResponse,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      set({ submittingQuestionnaire: false });
+      return response;
+    } catch (error: any) {
+      set({ submittingQuestionnaire: false });
       return error.response;
     }
   },

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -8,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export interface ApiQuestion {
   id: number;
   question_id: string;
-  label: string;
+  text: string;
   type: "yes_no" | "multiple_choice" | "scale" | "open_ended";
   weight: number;
   dimension: string;
@@ -25,7 +26,7 @@ export interface ApiQuestion {
 
 export interface ComponentQuestion {
   type: "radio" | "checkbox" | "number-radio" | "text";
-  label: string;
+  text: string;
   options?: {
     text: string;
     value: string;
@@ -38,7 +39,8 @@ export const transformApiQuestions = (
 ): ComponentQuestion[] => {
   return apiQuestions.map((apiQuestion) => {
     const baseQuestion = {
-      label: apiQuestion.label,
+      text: apiQuestion.text,
+      question_id: apiQuestion.question_id,
     };
 
     // Extract both text and value if options exist
@@ -72,7 +74,7 @@ export const transformApiQuestions = (
           type: "number-radio",
           options: Array.from({ length: 5 }, (_, i) => ({
             text: (i + 1).toString(),
-            value: `scale_${i + 1}`,
+            value: `${i + 1}`,
           })),
         };
       case "open_ended":
@@ -89,4 +91,39 @@ export const transformApiQuestions = (
         };
     }
   });
+};
+
+export const mapAnswersToQuestions = (questions: any[], answers: any) => {
+  return {
+    responses: questions.map((question, index) => {
+      const answerKey = index.toString();
+      const answerValue = answers[answerKey];
+
+      // Handle different question types
+      let formattedValue;
+
+      if (question.type === "yes_no") {
+        formattedValue = answerValue === "yes" ? "Yes" : "No";
+      } else if (question.type === "multiple_choice") {
+        if (Array.isArray(answerValue)) {
+          // For multi-select, map option values to their text
+
+          formattedValue = answerValue.join(", ");
+        } else {
+          // For single select
+          const option = question.options?.map((opt: any) => opt.value);
+          formattedValue = option?.text || answerValue;
+        }
+      } else if (question.type === "scale") {
+        formattedValue = answerValue;
+      } else {
+        formattedValue = answerValue; // For open_ended and others
+      }
+
+      return {
+        question_id: question.question_id,
+        value: formattedValue,
+      };
+    }),
+  };
 };
