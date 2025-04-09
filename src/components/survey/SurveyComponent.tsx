@@ -28,10 +28,10 @@ interface Props {
   results?: string | null;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
-  handleSubmit: () => void;
+  handleSubmit: (questions: ApiQuestion[]) => void;
   handleCloseSurvey: () => void;
   handleExitSurvey: () => void;
-  isApiFormat?: boolean; // Add this prop to indicate API format
+  isApiFormat?: boolean;
 }
 
 const QuestionComponents = ({
@@ -46,11 +46,15 @@ const QuestionComponents = ({
   handleSubmit,
   handleCloseSurvey,
   handleExitSurvey,
-  isApiFormat = false, // Default to false for backward compatibility
+  isApiFormat = false,
 }: Props) => {
   const fetchingQuestionnaire = useQuestionnaireStore(
     (state) => state.fetchingQuestionnaire
   );
+  const isSubmitting = useQuestionnaireStore(
+    (state) => state.submittingQuestionnaire
+  );
+
   const normalizedQuestions = isApiFormat
     ? transformApiQuestions(questions as ApiQuestion[])
     : (questions as ApiQuestion[]);
@@ -100,7 +104,6 @@ const QuestionComponents = ({
   const startIndex: number = currentPage * questionsPerPage;
   const endIndex: number = startIndex + questionsPerPage;
   const currentQuestions = normalizedQuestions.slice(startIndex, endIndex);
-  console.log("into the surevy Component: ", currentQuestions);
   // Check if all questions on the current page are answered
   const isCurrentPageComplete = currentQuestions.every((question, index) => {
     const questionIndex = startIndex + index;
@@ -210,7 +213,7 @@ const QuestionComponents = ({
                   className="flex flex-col gap-2 mt-4"
                 >
                   <label className="text-lg font-medium">
-                    {questionNumber}. {question.label}
+                    {questionNumber}. {question.text}
                   </label>
                   {question.type === "text" && (
                     <input
@@ -343,10 +346,10 @@ const QuestionComponents = ({
           ) : (
             <Button
               className="text-white bg-primary-500 rounded-full !px-8 !py-4 ml-auto"
-              onClick={handleSubmit}
+              onClick={() => handleSubmit(questions)}
               disabled={!isCurrentPageComplete}
             >
-              Submit
+              {isSubmitting ? "...Submitting" : "Submit"}
             </Button>
           )}
         </div>

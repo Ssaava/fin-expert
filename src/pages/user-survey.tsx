@@ -19,8 +19,6 @@ const UserSurvey = () => {
 
   const user_category = useAuthStore((state) => state.user_category);
   const { questions } = useFetchQuestionnaire(user_category as string);
-
-  console.log("User Questions: ", questions);
   if (!questions) return <>Failed to get Questions</>;
 
   return (

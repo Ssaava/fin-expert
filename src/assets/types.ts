@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { LoginSchema } from "@/schemas/schema";
 import { z } from "zod";
 
@@ -30,8 +31,10 @@ export interface LogoutState {
 
 export interface GetQuestionnaireState {
   fetchingQuestionnaire: boolean;
+  submittingQuestionnaire: boolean;
   getQuestionnaire: (user_type: string, token: string) => void;
   getUserTypes: () => void;
+  submitQuestionnaire: (surveyResponse: any, token: string) => void;
 }
 export type UserTypes = {
   id: "string";
