@@ -24,6 +24,7 @@ const useSurvey = () => {
       : 0
   );
   const [results, setResults] = useState<string | null>(null);
+  const [score, setScore] = useState(0);
   const navigate = useNavigate();
 
   const handleSubmit = async (apiQuestions: ApiQuestion[]) => {
@@ -48,8 +49,10 @@ const useSurvey = () => {
       toast.success("Questionnaire submitted successfully");
       setIsSubmitted(true);
       setResults(
-        "   You have good financial inclusivity but can improve in accessibility and financial literacy"
+        response?.data?.recommendations[0]?.general_advice ||
+          "No Big Advice Provided"
       );
+      setScore(Math.round(response?.data?.overall_score));
       localStorage.removeItem("surveyAnswers");
       localStorage.removeItem("surveyCurrentPage");
     } else {
@@ -89,6 +92,7 @@ const useSurvey = () => {
     handleSubmit,
     handleCloseSurvey,
     handleExitSurvey,
+    score,
   };
 };
 

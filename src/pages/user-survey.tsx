@@ -15,6 +15,7 @@ const UserSurvey = () => {
     handleSubmit,
     handleCloseSurvey,
     handleExitSurvey,
+    score,
   } = useSurvey();
 
   const user_category = useAuthStore((state) => state.user_category);
@@ -37,6 +38,7 @@ const UserSurvey = () => {
           setCurrentPage={setCurrentPage}
           handleCloseSurvey={handleCloseSurvey}
           handleExitSurvey={handleExitSurvey}
+          score={score}
         />
       </section>
     </>
