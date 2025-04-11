@@ -45,8 +45,8 @@ export default function Comments() {
       >
         <CarouselContent>
           {comments.map(({ id, title, name, comment, image }) => (
-            <CarouselItem key={id}>
-              <div className="mx-auto flex flex-col gap-6 max-w-[50rem]">
+            <CarouselItem key={id} className="w-10">
+              <div className="mx-auto flex flex-col gap-6 max-w-[50rem] w-full">
                 <p className="text-white text-center">{comment}</p>
                 <div className="flex items-center gap-4 justify-center">
                   <Avatar className="size-14">
