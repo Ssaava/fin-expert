@@ -1,7 +1,6 @@
-import { Link } from "react-router";
-import { Button } from "../ui/button";
-import { useState } from "react";
 import { useAuthStore } from "@/store/store";
+import { useState } from "react";
+import { Link } from "react-router";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,12 +54,31 @@ const Header = () => {
           <Link to="/" className="py-2">
             Contact Us
           </Link>
-          <Button className="rounded-full bg-primary-500 p-6 w-full my-2">
-            Create Account
-          </Button>
-          <Button className="rounded-full bg-gray-200 text-gray-900 hover:text-white p-6 w-full my-2">
-            Login
-          </Button>
+          {isAuthenticated && user_category ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="cursor-pointer rounded-full bg-primary-500 px-6 py-3 hover:bg-black/90 text-white font-bold duration-200"
+              >
+                Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/auth/create-account"
+                className="rounded-full bg-primary-500 p-6 w-full my-2"
+              >
+                Create Account
+              </Link>
+              <Link
+                to="/auth"
+                className="rounded-full bg-gray-200 text-gray-900 hover:text-white p-6 w-full my-2"
+              >
+                Logins
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Desktop Menu */}

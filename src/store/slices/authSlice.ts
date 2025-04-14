@@ -9,6 +9,7 @@ const initialState = {
   fin_token: "",
   authenticating: false,
   user_category: null,
+  user_email: null,
 };
 
 const SERVER_URL = import.meta.env.VITE_SERVER;
@@ -26,6 +27,7 @@ export const createLoginSlice: StateCreator<
       set({
         fin_token: response.data.access_token,
         user_category: response.data.category,
+        user_email: data.email,
         authenticating: false,
       });
 

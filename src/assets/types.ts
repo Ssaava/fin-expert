@@ -18,6 +18,7 @@ export interface LoginState {
   fin_token: string;
   authenticating: boolean;
   user_category: string | null;
+  user_email: string | null;
   loginUser: (data: z.infer<typeof LoginSchema>) => void;
   checkAuth: () => void;
 }
