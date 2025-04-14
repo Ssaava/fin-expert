@@ -60,7 +60,6 @@ const useSurvey = () => {
         description: response.data.detail,
       });
     }
-    console.log("Submission Response: ", response);
   };
 
   const handleRetakeSurvey = (): void => {
