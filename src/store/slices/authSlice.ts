@@ -75,6 +75,6 @@ export const createLogoutSlice: StateCreator<
 > = (set) => ({
   logoutUser: () => {
     set(initialState);
-    useQuestionnaireStore.getState().reset();
+    // useQuestionnaireStore.getState().reset();
   },
 });

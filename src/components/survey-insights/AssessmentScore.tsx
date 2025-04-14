@@ -10,7 +10,6 @@ import {
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
-const chartData = [{ score: "scoreType", count: 160, fill: "#FFA72699" }];
 
 const chartConfig = {
   count: {
@@ -21,8 +20,16 @@ const chartConfig = {
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
-
-export function AssessmentScore() {
+export type ChartData = {
+  chartData: {
+    score: string;
+    count: number;
+    fill: string;
+  }[];
+};
+export function AssessmentScore({ chartData }: ChartData) {
+  const assessmentScore = (chartData[0].count / 100) * 360;
+  console.log(assessmentScore, " : ", chartData);
   return (
     <Card className="flex flex-col max-w-[17rem] h-full xl:h-auto w-full shadow-none border-0 p-0">
       <CardContent className="p-0">
@@ -33,7 +40,7 @@ export function AssessmentScore() {
           <RadialBarChart
             data={chartData}
             startAngle={0}
-            endAngle={160}
+            endAngle={assessmentScore}
             innerRadius={105}
             outerRadius={180}
           >
@@ -61,8 +68,7 @@ export function AssessmentScore() {
                           y={viewBox.cy}
                           className="fill-foreground font-bold text-4xl"
                         >
-                          {Math.round((chartData[0].count * 100) / 360) +
-                            "/100"}
+                          {Math.round(chartData[0].count) + "/100"}
                         </tspan>
                         <tspan
                           x={viewBox.cx}

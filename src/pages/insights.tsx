@@ -11,6 +11,13 @@ const Insights = () => {
   const questionnaireResults = useQuestionnaireStore(
     (state) => state.questionnaireResults
   );
+  const chartData = [
+    {
+      score: "scoreType",
+      count: questionnaireResults?.overall_score ?? 0,
+      fill: "#FFA72699",
+    },
+  ];
 
   return (
     <>
@@ -27,7 +34,7 @@ const Insights = () => {
             <div className="border bg-white rounded-lg p-6 py-12 w-full">
               <div className="flex max-lg:flex-col lg:items-center justify-between gap-4 lg:justify-between">
                 <div className="sm:flex md:items-center gap-4">
-                  <AssessmentScore />
+                  <AssessmentScore chartData={chartData} />
                   <div className="sm:flex-1 w-full  flex items-center flex-wrap gap-4">
                     <div className="max-sm:mt-4">
                       <h3 className="text-lg font-medium">Inclusive Leader</h3>
