@@ -5,6 +5,7 @@ import { DatePicker } from "@/components/dashboard/DatePicker";
 import GeographicalReachChart from "@/components/dashboard/GeographicalReachChart";
 import TargetCustomerSegments from "@/components/dashboard/TargetCustomerSegments";
 import { Button } from "@/components/ui/button";
+import { useAuthStore } from "@/store/store";
 import { useState } from "react";
 import { RxDownload } from "react-icons/rx";
 const options = ["Custom", "12 Months", "30 days", "7 days", "24 hours"];
@@ -43,7 +44,7 @@ const Dashboard = () => {
   const [formData, setFormData] = useState({
     date: "Custom",
   });
-  console.log(formData);
+  const user_email = useAuthStore((state) => state.user_email);
   const handleInputChange = (e: {
     target: { name: string; value: string };
   }) => {
@@ -55,7 +56,7 @@ const Dashboard = () => {
       <section className="vertical-spacing pb-10">
         <div className="flex gap-4 justify-between items-center flex-wrap">
           <div>
-            <h3 className="text-3xl font-bold">Welcome back, John</h3>
+            <h3 className="text-3xl font-bold">Welcome back, {user_email}</h3>
             <p className="text-black/70">
               Here are the current insights and activities in Uganda's fintech
               industry.
