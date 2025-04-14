@@ -2,7 +2,9 @@ import { fintechChartConfig, partnershipChartConfig } from "@/assets/data";
 import PieChartComponent from "@/components/common/PieChartComponent";
 import { BarChartComponent } from "@/components/dashboard/BarChart";
 import { DatePicker } from "@/components/dashboard/DatePicker";
+import { FinancialInclusionTrends } from "@/components/dashboard/FinancialInclusionTrends";
 import GeographicalReachChart from "@/components/dashboard/GeographicalReachChart";
+import { SavingComparison } from "@/components/dashboard/SavingComparison";
 import TargetCustomerSegments from "@/components/dashboard/TargetCustomerSegments";
 import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/store";
@@ -128,6 +130,14 @@ const Dashboard = () => {
               title={"partnership types distribution"}
               description="Fintech partnered with banks and telecoms"
             />
+          </div>
+        </div>
+        <div className="xl:grid xl:grid-cols-2 md: gap-4">
+          <div>
+            <FinancialInclusionTrends />
+          </div>
+          <div>
+            <SavingComparison />
           </div>
         </div>
       </section>
