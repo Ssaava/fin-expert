@@ -8,8 +8,8 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import {
   createLoginSlice,
-  createRegisterSlice,
   createLogoutSlice,
+  createRegisterSlice,
 } from "./slices/authSlice";
 import { useQuestionnaireSlice } from "./slices/useQuestionnairSlice";
 
@@ -39,7 +39,9 @@ export const useQuestionnaireStore = create<GetQuestionnaireState>()(
     }),
     {
       name: "questionnaire-store",
-      partialize: () => ({}),
+      partialize: (state) => ({
+        questionnaireResults: state.questionnaireResults,
+      }),
     }
   )
 );

@@ -84,17 +84,19 @@ const InsightsHeader = () => {
             >
               Home
             </Link>
-            <Link
-              to="/dashboard"
-              onClick={handleLinkClick}
-              className={`hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3 w-full block rounded-lg ${
-                isActivePath("/dashboard")
-                  ? "font-extrabold bg-primary-100"
-                  : ""
-              }`}
-            >
-              Dashboard
-            </Link>
+            {user_category !== "fintech_users" && (
+              <Link
+                to="/dashboard"
+                onClick={handleLinkClick}
+                className={`hover:text-primary-500 duration-300 hover:bg-primary-100 px-6 py-3 w-full block rounded-lg ${
+                  isActivePath("/dashboard")
+                    ? "font-extrabold bg-primary-100"
+                    : ""
+                }`}
+              >
+                Dashboard
+              </Link>
+            )}
             <Link
               to="/dashboard/survey-insights"
               onClick={handleLinkClick}
@@ -135,12 +137,14 @@ const InsightsHeader = () => {
           <Link to="/" className={isActivePath("/") ? "font-extrabold" : ""}>
             Home
           </Link>
-          <Link
-            to="/dashboard"
-            className={isActivePath("/dashboard") ? "font-extrabold" : ""}
-          >
-            Dashboard
-          </Link>
+          {user_category != "fintech_users" && (
+            <Link
+              to="/dashboard"
+              className={isActivePath("/dashboard") ? "font-extrabold" : ""}
+            >
+              Dashboard
+            </Link>
+          )}
           <Link
             to="/dashboard/survey-insights"
             className={

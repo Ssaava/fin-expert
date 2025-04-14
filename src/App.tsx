@@ -1,6 +1,5 @@
 import Home from "@/pages/home";
 import { Route, Routes } from "react-router";
-import CheckAuth from "./components/common/CheckAuth";
 import AuthLayout from "./layouts/auth-layout";
 import LandingPageLayout from "./layouts/landing-page-layout";
 import SurveyInsightsLayout from "./layouts/survey-insights-layout";
@@ -15,11 +14,11 @@ import Survey from "./pages/survey";
 import Unauthorized from "./pages/unauthorized";
 import UserSurvey from "./pages/user-survey";
 import { useAuthStore } from "./store/store";
+import { CheckAuth } from "./components/common/CheckAuth";
 
 const App = () => {
   const isAuthenticated = !!useAuthStore((state) => state.fin_token);
   const user_category = useAuthStore((state) => state.user_category);
-  console.log(user_category);
   return (
     <Routes>
       <Route path="/" element={<LandingPageLayout />}>
@@ -68,7 +67,19 @@ const App = () => {
 
         {/* Dashboard routes - require authentication but no specific role */}
         <Route path="dashboard" element={<SurveyInsightsLayout />}>
-          <Route index element={<Dashboard />} />
+          <Route
+            index
+            element={
+              <CheckAuth
+                isAuthenticated={isAuthenticated}
+                restrictedRole="fintech_users" // Restrict fintech users
+                userRole={user_category}
+                redirectTo="/dashboard/survey-insights"
+              >
+                <Dashboard />{" "}
+              </CheckAuth>
+            }
+          />
           <Route path="survey-insights" element={<Insights />} />
           <Route path="settings" element={<Settings />} />
         </Route>

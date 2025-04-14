@@ -11,6 +11,7 @@ export const useQuestionnaireSlice: StateCreator<
 > = (set) => ({
   fetchingQuestionnaire: false,
   submittingQuestionnaire: false,
+  questionnaireResults: null,
   getQuestionnaire: async (user_type: string, token) => {
     set({ fetchingQuestionnaire: true });
     try {
@@ -50,11 +51,19 @@ export const useQuestionnaireSlice: StateCreator<
           },
         }
       );
-      set({ submittingQuestionnaire: false });
+      set({
+        submittingQuestionnaire: false,
+        questionnaireResults: response.data,
+      });
+      console.log(response.data);
+
       return response;
     } catch (error: any) {
       set({ submittingQuestionnaire: false });
       return error.response;
     }
+  },
+  reset: () => {
+    set({ questionnaireResults: null });
   },
 });

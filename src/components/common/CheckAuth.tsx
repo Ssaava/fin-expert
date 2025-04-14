@@ -4,18 +4,20 @@ interface CheckAuthProps {
   isAuthenticated: boolean;
   redirectTo: string;
   requiredRole?: string | string[];
+  restrictedRole?: string | string[]; // New prop for restricted roles
   userRole?: string | null;
   children?: React.ReactNode;
-  allowUnauthenticated?: boolean; // New prop for routes that don't require auth
+  allowUnauthenticated?: boolean;
 }
 
-const CheckAuth = ({
+export const CheckAuth = ({
   isAuthenticated,
   redirectTo,
   requiredRole,
+  restrictedRole, // New prop
   userRole,
   children,
-  allowUnauthenticated = false, // Default to false for protected routes
+  allowUnauthenticated = false,
 }: CheckAuthProps) => {
   const location = useLocation();
 
@@ -29,6 +31,17 @@ const CheckAuth = ({
     // Redirect to login if not authenticated
     if (!isAuthenticated) {
       return <Navigate to="/auth" state={{ from: location }} replace />;
+    }
+
+    // Check if user has restricted role fintech-users
+    if (restrictedRole && userRole) {
+      const hasRestrictedRole = Array.isArray(restrictedRole)
+        ? restrictedRole.includes(userRole)
+        : restrictedRole === userRole;
+
+      if (hasRestrictedRole) {
+        return <Navigate to="/dashboard/survey-insights" replace />;
+      }
     }
 
     // Check role requirements if specified
@@ -45,5 +58,3 @@ const CheckAuth = ({
 
   return children ? children : <Outlet />;
 };
-
-export default CheckAuth;

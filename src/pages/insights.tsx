@@ -2,16 +2,22 @@ import { Recommendation } from "@/components/home/Recommendation";
 import { AssessmentScore } from "@/components/survey-insights/AssessmentScore";
 import OverviewProgress from "@/components/survey-insights/OverviewProgress";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useQuestionnaireStore } from "@/store/store";
 import { BsBuildingAdd } from "react-icons/bs";
 import { FaChrome } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const Insights = () => {
-  const [isAssessmentTaken, setIsAssessmentTaken] = useState(false);
-  useEffect(() => {
-    setIsAssessmentTaken(true);
-  }, []);
+  const questionnaireResults = useQuestionnaireStore(
+    (state) => state.questionnaireResults
+  );
+  const chartData = [
+    {
+      score: "scoreType",
+      count: questionnaireResults?.overall_score ?? 0,
+      fill: "#FFA72699",
+    },
+  ];
 
   return (
     <>
@@ -22,13 +28,13 @@ const Insights = () => {
         </p>
       </div>
       {/* logic to display the insights from fetched data here */}
-      {isAssessmentTaken ? (
+      {questionnaireResults ? (
         <>
           <section className="vertical-spacing">
             <div className="border bg-white rounded-lg p-6 py-12 w-full">
               <div className="flex max-lg:flex-col lg:items-center justify-between gap-4 lg:justify-between">
                 <div className="sm:flex md:items-center gap-4">
-                  <AssessmentScore />
+                  <AssessmentScore chartData={chartData} />
                   <div className="sm:flex-1 w-full  flex items-center flex-wrap gap-4">
                     <div className="max-sm:mt-4">
                       <h3 className="text-lg font-medium">Inclusive Leader</h3>
@@ -43,7 +49,7 @@ const Insights = () => {
                   to={"/survey"}
                   className="w-fit mx-auto bg-primary-500 py-3 font-bold px-8 flex items-center gap-2 text-white group rounded-full hover:bg-black duration-200"
                 >
-                  <BsBuildingAdd /> Take Assessment
+                  <BsBuildingAdd /> Re-Take Assessment
                 </Link>
               </div>
             </div>
@@ -76,21 +82,30 @@ const Insights = () => {
                 </Button>
               </div>
               <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-4">
-                <Recommendation
-                  title="Innovate and Expand"
-                  className="lg:py-12 bg-[#D1E7FD]"
-                  value="Explore new features to engage undeserved communities"
-                />
-                <Recommendation
-                  title="Maintain user satisfaction"
-                  className="lg:py-12 bg-[#D4EDDA]"
-                  value="continue gathering user feedback to stay tuned"
-                />
-                <Recommendation
-                  title="Leverage data insights"
-                  className="lg:py-12 bg-[#FFF3CD]"
-                  value="utilize advanced data analytics to discover growth opportunists."
-                />
+                {questionnaireResults.recommendations &&
+                questionnaireResults.recommendations.length > 0 ? (
+                  questionnaireResults.recommendations.map(
+                    (recommendation, index) => {
+                      console.log(recommendation);
+                      const bgColors = [
+                        "bg-[#D1E7FD]",
+                        "bg-[#D4EDDA]",
+                        "bg-[#FFF3CD]",
+                      ];
+                      const randomColor = bgColors[index % bgColors.length];
+                      return (
+                        <Recommendation
+                          key={index} // Don't forget a unique key
+                          title={recommendation.dimension}
+                          className={`lg:py-12 ${randomColor}`}
+                          value={recommendation.general_advice}
+                        />
+                      );
+                    }
+                  )
+                ) : (
+                  <h3>There are no recommendations</h3>
+                )}
               </div>
             </div>
           </section>
@@ -120,5 +135,4 @@ const Insights = () => {
     </>
   );
 };
-
 export default Insights;

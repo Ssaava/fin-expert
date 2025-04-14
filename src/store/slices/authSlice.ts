@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { LoginState, LogoutState, RegisterState } from "@/assets/types";
-import { StateCreator } from "zustand";
+import { LoginSchema } from "@/schemas/schema";
 import axios from "axios";
 import { z } from "zod";
-import { LoginSchema } from "@/schemas/schema";
+import { StateCreator } from "zustand";
 
 const initialState = {
   fin_token: "",
@@ -74,5 +74,6 @@ export const createLogoutSlice: StateCreator<
 > = (set) => ({
   logoutUser: () => {
     set(initialState);
+    // useQuestionnaireStore.getState().reset();
   },
 });
