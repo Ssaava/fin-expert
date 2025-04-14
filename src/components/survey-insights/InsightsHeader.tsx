@@ -10,12 +10,12 @@ import { CiSettings } from "react-icons/ci";
 import { IoSearchOutline } from "react-icons/io5";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 import { Link, useLocation } from "react-router";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const InsightsHeader = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const logOut = useAuthStore((state) => state.logoutUser);
+  const user_category = useAuthStore((state) => state.user_category);
 
   const handleSignOut = async () => {
     await logOut();
@@ -69,10 +69,11 @@ const InsightsHeader = () => {
         >
           <div className="p-4">
             <button className="mb-4">
-              <Avatar className="size-10">
+              {/* <Avatar className="size-10">
                 <AvatarImage src={"https://github.com/shadcn.png"} />
                 <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+              </Avatar> */}
+              {user_category}
             </button>
             <Link
               to="/"
@@ -167,10 +168,11 @@ const InsightsHeader = () => {
 
           <Popover>
             <PopoverTrigger>
-              <Avatar className="size-10">
+              {/* <Avatar className="size-10">
                 <AvatarImage src={"https://github.com/shadcn.png"} />
                 <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+              </Avatar> */}
+              {user_category}
             </PopoverTrigger>
             <PopoverContent className="md:mr-20 mt-6">
               <div className="flex items-center justify-between gap-4">

@@ -179,7 +179,7 @@ const QuestionComponents = ({
               <IoMdCheckmark className="text-white text-4xl md:text-5xl" />
             </div>
             <h2 className="text-2xl font-bold text-center">
-              Assessment Complete
+              AI Recommendation
             </h2>
             <p className="text-lg text-center">{results}</p>
             <Separator className="my-8 !h-[1.7px] !rounded-full" />
