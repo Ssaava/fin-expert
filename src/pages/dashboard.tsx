@@ -150,20 +150,20 @@ const Dashboard = () => {
             <GenderComparison
               title="Gender Comparison of Financial Inclusion Metrics"
               data={[
-                { category: "Account", female: 186, male: 80 },
+                { category: "Account", female: 0.65, male: 0.68 },
                 {
                   category: "Financial institution account",
-                  female: 305,
-                  male: 200,
+                  female: 0.35,
+                  male: 0.38,
                 },
-                { category: "male money account", female: 237, male: 120 },
+                { category: "male money account", female: 0.55, male: 0.58 },
                 {
                   category: "Made or received a digital payment",
-                  female: 73,
-                  male: 190,
+                  female: 0.65,
+                  male: 0.68,
                 },
-                { category: "Saved any money", female: 209, male: 130 },
-                { category: "Borrowed any money", female: 214, male: 140 },
+                { category: "Saved any money", female: 0.73, male: 0.7 },
+                { category: "Borrowed any money", female: 0.79, male: 0.74 },
               ]}
             />
           </div>
@@ -172,20 +172,20 @@ const Dashboard = () => {
             <UrbanRuralComparison
               title="Urban vs Rural Comparison of Financial Inclusion Metrics"
               data={[
-                { category: "Account", rural: 186, urban: 80 },
+                { category: "Account", rural: 0.62, urban: 0.74 },
                 {
                   category: "Financial institution account",
-                  rural: 305,
-                  urban: 200,
+                  rural: 0.34,
+                  urban: 0.42,
                 },
-                { category: "Mobile money account", rural: 237, urban: 120 },
+                { category: "Mobile money account", rural: 0.5, urban: 0.59 },
                 {
                   category: "Made or received a digital payment",
-                  rural: 73,
-                  urban: 190,
+                  rural: 0.58,
+                  urban: 0.69,
                 },
-                { category: "Saved any money", rural: 209, urban: 130 },
-                { category: "Borrowed any money", rural: 214, urban: 140 },
+                { category: "Saved any money", rural: 0.7, urban: 0.73 },
+                { category: "Borrowed any money", rural: 0.77, urban: 0.72 },
               ]}
             />
           </div>

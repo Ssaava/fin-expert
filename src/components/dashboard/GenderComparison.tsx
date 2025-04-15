@@ -82,8 +82,8 @@ export function GenderComparison({
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="female" fill="#0000ff" radius={4} name="Female" />
-            <Bar dataKey="male" fill="#FFA500" radius={4} name="Male" />
+            <Bar dataKey="female" fill="#0000ff" name="Female" />
+            <Bar dataKey="male" fill="#FFA500" name="Male" />
           </BarChart>
         </ChartContainer>
       </CardContent>

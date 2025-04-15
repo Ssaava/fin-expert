@@ -82,8 +82,8 @@ export function UrbanRuralComparison({
               content={<ChartTooltipContent indicator="dashed" />}
             />
             <Legend verticalAlign="top" align="right" layout="vertical" />
-            <Bar dataKey="rural" fill="#0000ff" radius={4} name="Rural" />
-            <Bar dataKey="urban" fill="#FFA500" radius={4} name="Urban" />
+            <Bar dataKey="rural" fill="#0000ff" name="Rural" />
+            <Bar dataKey="urban" fill="#FFA500" name="Urban" />
           </BarChart>
         </ChartContainer>
       </CardContent>
