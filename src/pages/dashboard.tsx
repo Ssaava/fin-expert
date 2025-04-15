@@ -7,6 +7,7 @@ import { FinancialInclusionTrends } from "@/components/dashboard/FinancialInclus
 import { GenderComparison } from "@/components/dashboard/GenderComparison";
 import GeographicalReachChart from "@/components/dashboard/GeographicalReachChart";
 import { IncomeGroupComparison } from "@/components/dashboard/IncomeGroupComparison";
+import { SavingBehaviorChart } from "@/components/dashboard/SavingBehavior";
 import { SavingComparison } from "@/components/dashboard/SavingComparison";
 import TargetCustomerSegments from "@/components/dashboard/TargetCustomerSegments";
 import { UrbanRuralComparison } from "@/components/dashboard/UrbanRuralComparison";
@@ -72,7 +73,6 @@ const Dashboard = () => {
             <RxDownload className="text-xl" /> Export report
           </Button>
         </div>
-
         <form className="py-8">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex flex-wrap [&>*:first-child]:rounded-l-lg [&>*:last-child]:rounded-r-lg">
@@ -102,7 +102,6 @@ const Dashboard = () => {
             </div>
           </div>
         </form>
-
         <div className="grid lg:grid-cols-3 gap-4">
           <div className="lg:col-span-1 h-full bg-white rounded-lg shadow border ">
             <PieChartComponent
@@ -117,11 +116,9 @@ const Dashboard = () => {
             <BarChartComponent />
           </div>
         </div>
-
         <div>
           <TargetCustomerSegments />
         </div>
-
         <div className="grid lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2 h-full shadow border rounded-lg bg-white">
             <GeographicalReachChart />
@@ -190,7 +187,6 @@ const Dashboard = () => {
             />
           </div>
         </div>
-
         {/* income comparison */}
         <div className="xl:grid xl:grid-cols-2 md: gap-4">
           <div>
@@ -218,7 +214,7 @@ const Dashboard = () => {
               ]}
             />
           </div>
-
+          {/* new graph */}
           <div>
             <EducationLevelComparison
               title="Education Level Comparison of Financial Inclusion Metrics"
@@ -248,7 +244,9 @@ const Dashboard = () => {
               ]}
             />
           </div>
+          {/* new graph Saving Behaviors in Uganda*/}
         </div>
+        <SavingBehaviorChart />
       </section>
     </>
   );
