@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Input } from "../common/Input";
 import { PencilIcon } from "lucide-react";
+import { useAuthStore } from "@/store/store";
 
 const ManageProfile = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ const ManageProfile = () => {
     role: "",
     profileImage: "https://github.com/shadcn.png",
   });
+  const user_category = useAuthStore((state) => state.user_category);
+  const user_email = useAuthStore((state) => state.user_email);
 
   const handleChange = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
@@ -22,6 +25,13 @@ const ManageProfile = () => {
       [name]: value,
     }));
   };
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      email: user_email as string,
+      role: user_category as string,
+    }));
+  }, [user_category, user_email]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
