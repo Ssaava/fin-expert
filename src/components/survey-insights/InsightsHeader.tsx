@@ -16,7 +16,7 @@ const InsightsHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const logOut = useAuthStore((state) => state.logoutUser);
   const user_category = useAuthStore((state) => state.user_category);
-
+  const user_email = useAuthStore((state) => state.user_email);
   const handleSignOut = async () => {
     await logOut();
   };
@@ -179,15 +179,15 @@ const InsightsHeader = () => {
               {user_category}
             </PopoverTrigger>
             <PopoverContent className="md:mr-20 mt-6">
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col justify-between gap-4">
                 <div>
-                  <h3 className="font-bold">John Doe</h3>
-                  <p className="text-black/40 font-bold">johndoe@gmail.com</p>
+                  <h3 className="font-bold">{user_category}</h3>
+                  <p className="text-black/40 font-bold">{user_email}</p>
                 </div>
                 <Link
                   to="/dashboard/settings"
                   reloadDocument
-                  className="text-primary-500 font-bold rounded-full py-1 px-5 border-2"
+                  className="text-primary-500 w-fit font-bold rounded-full py-1 px-5 border-2"
                 >
                   User
                 </Link>
