@@ -25,24 +25,24 @@ import {
 } from "@/components/ui/chart";
 
 const chartConfig = {
-  female: {
-    label: "Female",
+  poorest: {
+    label: "Poorest 40%",
     color: "hsl(var(--chart-1))",
   },
-  male: {
-    label: "Male",
+  richest: {
+    label: "Richest 60%",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
-export function GenderComparison({
+export function IncomeGroupComparison({
   title,
   description,
   data,
 }: {
   title?: string;
   description?: string;
-  data: Array<{ category: string; female: number; male: number }>;
+  data: Array<{ category: string; poorest: number; richest: number }>;
 }) {
   return (
     <Card>
@@ -77,13 +77,23 @@ export function GenderComparison({
                 offset={-10}
               />
             </YAxis>
-            <Legend verticalAlign="top" align="right" layout="vertical" />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="female" fill="#0000ff" radius={4} name="Female" />
-            <Bar dataKey="male" fill="#FFA500" radius={4} name="Male" />
+            <Legend verticalAlign="top" layout="vertical" />
+            <Bar
+              dataKey="poorest"
+              fill="#0000ff"
+              radius={4}
+              name="Poorest 40%"
+            />
+            <Bar
+              dataKey="richest"
+              fill="#FFA500"
+              radius={4}
+              name="Richest 60%"
+            />
           </BarChart>
         </ChartContainer>
       </CardContent>

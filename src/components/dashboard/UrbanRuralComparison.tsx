@@ -57,7 +57,7 @@ export function UrbanRuralComparison({
             <XAxis
               dataKey="category"
               tickLine={false}
-              tickMargin={40}
+              tickMargin={0}
               axisLine={true}
               angle={-45}
               textAnchor="end"

@@ -2,9 +2,11 @@ import { fintechChartConfig, partnershipChartConfig } from "@/assets/data";
 import PieChartComponent from "@/components/common/PieChartComponent";
 import { BarChartComponent } from "@/components/dashboard/BarChart";
 import { DatePicker } from "@/components/dashboard/DatePicker";
+import { EducationLevelComparison } from "@/components/dashboard/EducationLevelComparison";
 import { FinancialInclusionTrends } from "@/components/dashboard/FinancialInclusionTrends";
 import { GenderComparison } from "@/components/dashboard/GenderComparison";
 import GeographicalReachChart from "@/components/dashboard/GeographicalReachChart";
+import { IncomeGroupComparison } from "@/components/dashboard/IncomeGroupComparison";
 import { SavingComparison } from "@/components/dashboard/SavingComparison";
 import TargetCustomerSegments from "@/components/dashboard/TargetCustomerSegments";
 import { UrbanRuralComparison } from "@/components/dashboard/UrbanRuralComparison";
@@ -142,6 +144,7 @@ const Dashboard = () => {
             <SavingComparison />
           </div>
         </div>
+        {/* graph gender and city/rural */}
         <div className="xl:grid xl:grid-cols-2 md: gap-4">
           <div>
             <GenderComparison
@@ -183,6 +186,65 @@ const Dashboard = () => {
                 },
                 { category: "Saved any money", rural: 209, urban: 130 },
                 { category: "Borrowed any money", rural: 214, urban: 140 },
+              ]}
+            />
+          </div>
+        </div>
+
+        {/* income comparison */}
+        <div className="xl:grid xl:grid-cols-2 md: gap-4">
+          <div>
+            <IncomeGroupComparison
+              title="Education Level Comparison of Financial Inclusion Metrics"
+              data={[
+                { category: "Account", poorest: 186, richest: 80 },
+                {
+                  category: "Financial institution account",
+                  poorest: 305,
+                  richest: 200,
+                },
+                {
+                  category: "richest money account",
+                  poorest: 237,
+                  richest: 120,
+                },
+                {
+                  category: "Made or received a digital payment",
+                  poorest: 73,
+                  richest: 190,
+                },
+                { category: "Saved any money", poorest: 209, richest: 130 },
+                { category: "Borrowed any money", poorest: 214, richest: 140 },
+              ]}
+            />
+          </div>
+
+          <div>
+            <EducationLevelComparison
+              title="Urban vs Rural Comparison of Financial Inclusion Metrics"
+              data={[
+                { category: "Account", primary: 186, secondary: 80 },
+                {
+                  category: "Financial institution account",
+                  primary: 305,
+                  secondary: 200,
+                },
+                {
+                  category: "Mobile money account",
+                  primary: 237,
+                  secondary: 120,
+                },
+                {
+                  category: "Made or received a digital payment",
+                  primary: 73,
+                  secondary: 190,
+                },
+                { category: "Saved any money", primary: 209, secondary: 130 },
+                {
+                  category: "Borrowed any money",
+                  primary: 214,
+                  secondary: 140,
+                },
               ]}
             />
           </div>

@@ -25,24 +25,24 @@ import {
 } from "@/components/ui/chart";
 
 const chartConfig = {
-  female: {
-    label: "Female",
+  primary: {
+    label: "Primary Education or less",
     color: "hsl(var(--chart-1))",
   },
-  male: {
-    label: "Male",
+  secondary: {
+    label: "Secondary Education or more",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
-export function GenderComparison({
+export function EducationLevelComparison({
   title,
   description,
   data,
 }: {
   title?: string;
   description?: string;
-  data: Array<{ category: string; female: number; male: number }>;
+  data: Array<{ category: string; primary: number; secondary: number }>;
 }) {
   return (
     <Card>
@@ -77,13 +77,23 @@ export function GenderComparison({
                 offset={-10}
               />
             </YAxis>
-            <Legend verticalAlign="top" align="right" layout="vertical" />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="female" fill="#0000ff" radius={4} name="Female" />
-            <Bar dataKey="male" fill="#FFA500" radius={4} name="Male" />
+            <Legend verticalAlign="top" layout="vertical" />
+            <Bar
+              dataKey="primary"
+              fill="#0000ff"
+              radius={4}
+              name="Primary education or less"
+            />
+            <Bar
+              dataKey="secondary"
+              fill="#FFA500"
+              radius={4}
+              name="Secondary Education or More"
+            />
           </BarChart>
         </ChartContainer>
       </CardContent>
