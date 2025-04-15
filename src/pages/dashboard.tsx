@@ -2,9 +2,12 @@ import { fintechChartConfig, partnershipChartConfig } from "@/assets/data";
 import PieChartComponent from "@/components/common/PieChartComponent";
 import { BarChartComponent } from "@/components/dashboard/BarChart";
 import { DatePicker } from "@/components/dashboard/DatePicker";
+import { EducationLevelComparison } from "@/components/dashboard/EducationLevelComparison";
 import { FinancialInclusionTrends } from "@/components/dashboard/FinancialInclusionTrends";
 import { GenderComparison } from "@/components/dashboard/GenderComparison";
 import GeographicalReachChart from "@/components/dashboard/GeographicalReachChart";
+import { IncomeGroupComparison } from "@/components/dashboard/IncomeGroupComparison";
+import { SavingBehaviorChart } from "@/components/dashboard/SavingBehavior";
 import { SavingComparison } from "@/components/dashboard/SavingComparison";
 import TargetCustomerSegments from "@/components/dashboard/TargetCustomerSegments";
 import { UrbanRuralComparison } from "@/components/dashboard/UrbanRuralComparison";
@@ -70,7 +73,6 @@ const Dashboard = () => {
             <RxDownload className="text-xl" /> Export report
           </Button>
         </div>
-
         <form className="py-8">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div className="flex flex-wrap [&>*:first-child]:rounded-l-lg [&>*:last-child]:rounded-r-lg">
@@ -100,7 +102,6 @@ const Dashboard = () => {
             </div>
           </div>
         </form>
-
         <div className="grid lg:grid-cols-3 gap-4">
           <div className="lg:col-span-1 h-full bg-white rounded-lg shadow border ">
             <PieChartComponent
@@ -115,11 +116,9 @@ const Dashboard = () => {
             <BarChartComponent />
           </div>
         </div>
-
         <div>
           <TargetCustomerSegments />
         </div>
-
         <div className="grid lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2 h-full shadow border rounded-lg bg-white">
             <GeographicalReachChart />
@@ -142,25 +141,26 @@ const Dashboard = () => {
             <SavingComparison />
           </div>
         </div>
+        {/* graph gender and city/rural */}
         <div className="xl:grid xl:grid-cols-2 md: gap-4">
           <div>
             <GenderComparison
               title="Gender Comparison of Financial Inclusion Metrics"
               data={[
-                { category: "Account", female: 186, male: 80 },
+                { category: "Account", female: 0.65, male: 0.68 },
                 {
                   category: "Financial institution account",
-                  female: 305,
-                  male: 200,
+                  female: 0.35,
+                  male: 0.38,
                 },
-                { category: "male money account", female: 237, male: 120 },
+                { category: "male money account", female: 0.55, male: 0.58 },
                 {
                   category: "Made or received a digital payment",
-                  female: 73,
-                  male: 190,
+                  female: 0.65,
+                  male: 0.68,
                 },
-                { category: "Saved any money", female: 209, male: 130 },
-                { category: "Borrowed any money", female: 214, male: 140 },
+                { category: "Saved any money", female: 0.73, male: 0.7 },
+                { category: "Borrowed any money", female: 0.79, male: 0.74 },
               ]}
             />
           </div>
@@ -169,24 +169,84 @@ const Dashboard = () => {
             <UrbanRuralComparison
               title="Urban vs Rural Comparison of Financial Inclusion Metrics"
               data={[
-                { category: "Account", rural: 186, urban: 80 },
+                { category: "Account", rural: 0.62, urban: 0.74 },
                 {
                   category: "Financial institution account",
-                  rural: 305,
-                  urban: 200,
+                  rural: 0.34,
+                  urban: 0.42,
                 },
-                { category: "Mobile money account", rural: 237, urban: 120 },
+                { category: "Mobile money account", rural: 0.5, urban: 0.59 },
                 {
                   category: "Made or received a digital payment",
-                  rural: 73,
-                  urban: 190,
+                  rural: 0.58,
+                  urban: 0.69,
                 },
-                { category: "Saved any money", rural: 209, urban: 130 },
-                { category: "Borrowed any money", rural: 214, urban: 140 },
+                { category: "Saved any money", rural: 0.7, urban: 0.73 },
+                { category: "Borrowed any money", rural: 0.77, urban: 0.72 },
               ]}
             />
           </div>
         </div>
+        {/* income comparison */}
+        <div className="xl:grid xl:grid-cols-2 md: gap-4">
+          <div>
+            <IncomeGroupComparison
+              title="income Group Comparison of Financial Inclusion Metrics"
+              data={[
+                { category: "Account", poorest: 0.52, richest: 0.75 },
+                {
+                  category: "Financial institution account",
+                  poorest: 0.28,
+                  richest: 0.42,
+                },
+                {
+                  category: "richest money account",
+                  poorest: 0.38,
+                  richest: 0.64,
+                },
+                {
+                  category: "Made or received a digital payment",
+                  poorest: 0.45,
+                  richest: 0.74,
+                },
+                { category: "Saved any money", poorest: 0.62, richest: 0.77 },
+                { category: "Borrowed any money", poorest: 0.7, richest: 0.78 },
+              ]}
+            />
+          </div>
+          {/* new graph */}
+          <div>
+            <EducationLevelComparison
+              title="Education Level Comparison of Financial Inclusion Metrics"
+              data={[
+                { category: "Account", primary: 0.54, secondary: 0.77 },
+                {
+                  category: "Financial institution account",
+                  primary: 0.27,
+                  secondary: 0.46,
+                },
+                {
+                  category: "Mobile money account",
+                  primary: 0.42,
+                  secondary: 0.63,
+                },
+                {
+                  category: "Made or received a digital payment",
+                  primary: 0.5,
+                  secondary: 0.73,
+                },
+                { category: "Saved any money", primary: 0.63, secondary: 0.77 },
+                {
+                  category: "Borrowed any money",
+                  primary: 0.73,
+                  secondary: 0.77,
+                },
+              ]}
+            />
+          </div>
+          {/* new graph Saving Behaviors in Uganda*/}
+        </div>
+        <SavingBehaviorChart />
       </section>
     </>
   );

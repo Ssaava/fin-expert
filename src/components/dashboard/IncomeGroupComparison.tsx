@@ -25,24 +25,24 @@ import {
 } from "@/components/ui/chart";
 
 const chartConfig = {
-  rural: {
-    label: "Rural",
+  poorest: {
+    label: "Poorest 40%",
     color: "hsl(var(--chart-1))",
   },
-  urban: {
-    label: "Urban",
+  richest: {
+    label: "Richest 60%",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
-export function UrbanRuralComparison({
+export function IncomeGroupComparison({
   title,
   description,
   data,
 }: {
   title?: string;
   description?: string;
-  data: Array<{ category: string; rural: number; urban: number }>;
+  data: Array<{ category: string; poorest: number; richest: number }>;
 }) {
   return (
     <Card>
@@ -81,9 +81,9 @@ export function UrbanRuralComparison({
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Legend verticalAlign="top" align="right" layout="vertical" />
-            <Bar dataKey="rural" fill="#0000ff" name="Rural" />
-            <Bar dataKey="urban" fill="#FFA500" name="Urban" />
+            <Legend verticalAlign="top" layout="vertical" />
+            <Bar dataKey="poorest" fill="#0000ff" name="Poorest 40%" />
+            <Bar dataKey="richest" fill="#FFA500" name="Richest 60%" />
           </BarChart>
         </ChartContainer>
       </CardContent>

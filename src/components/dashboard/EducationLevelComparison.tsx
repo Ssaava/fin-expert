@@ -25,24 +25,24 @@ import {
 } from "@/components/ui/chart";
 
 const chartConfig = {
-  rural: {
-    label: "Rural",
+  primary: {
+    label: "Primary Education or less",
     color: "hsl(var(--chart-1))",
   },
-  urban: {
-    label: "Urban",
+  secondary: {
+    label: "Secondary Education or more",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
 
-export function UrbanRuralComparison({
+export function EducationLevelComparison({
   title,
   description,
   data,
 }: {
   title?: string;
   description?: string;
-  data: Array<{ category: string; rural: number; urban: number }>;
+  data: Array<{ category: string; primary: number; secondary: number }>;
 }) {
   return (
     <Card>
@@ -81,9 +81,17 @@ export function UrbanRuralComparison({
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Legend verticalAlign="top" align="right" layout="vertical" />
-            <Bar dataKey="rural" fill="#0000ff" name="Rural" />
-            <Bar dataKey="urban" fill="#FFA500" name="Urban" />
+            <Legend verticalAlign="top" layout="vertical" />
+            <Bar
+              dataKey="primary"
+              fill="#0000ff"
+              name="Primary education or less"
+            />
+            <Bar
+              dataKey="secondary"
+              fill="#FFA500"
+              name="Secondary Education or More"
+            />
           </BarChart>
         </ChartContainer>
       </CardContent>
