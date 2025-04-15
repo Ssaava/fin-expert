@@ -85,13 +85,11 @@ export function EducationLevelComparison({
             <Bar
               dataKey="primary"
               fill="#0000ff"
-              radius={4}
               name="Primary education or less"
             />
             <Bar
               dataKey="secondary"
               fill="#FFA500"
-              radius={4}
               name="Secondary Education or More"
             />
           </BarChart>

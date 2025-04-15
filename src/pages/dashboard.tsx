@@ -195,55 +195,55 @@ const Dashboard = () => {
         <div className="xl:grid xl:grid-cols-2 md: gap-4">
           <div>
             <IncomeGroupComparison
-              title="Education Level Comparison of Financial Inclusion Metrics"
+              title="income Group Comparison of Financial Inclusion Metrics"
               data={[
-                { category: "Account", poorest: 186, richest: 80 },
+                { category: "Account", poorest: 0.52, richest: 0.75 },
                 {
                   category: "Financial institution account",
-                  poorest: 305,
-                  richest: 200,
+                  poorest: 0.28,
+                  richest: 0.42,
                 },
                 {
                   category: "richest money account",
-                  poorest: 237,
-                  richest: 120,
+                  poorest: 0.38,
+                  richest: 0.64,
                 },
                 {
                   category: "Made or received a digital payment",
-                  poorest: 73,
-                  richest: 190,
+                  poorest: 0.45,
+                  richest: 0.74,
                 },
-                { category: "Saved any money", poorest: 209, richest: 130 },
-                { category: "Borrowed any money", poorest: 214, richest: 140 },
+                { category: "Saved any money", poorest: 0.62, richest: 0.77 },
+                { category: "Borrowed any money", poorest: 0.7, richest: 0.78 },
               ]}
             />
           </div>
 
           <div>
             <EducationLevelComparison
-              title="Urban vs Rural Comparison of Financial Inclusion Metrics"
+              title="Education Level Comparison of Financial Inclusion Metrics"
               data={[
-                { category: "Account", primary: 186, secondary: 80 },
+                { category: "Account", primary: 0.54, secondary: 0.77 },
                 {
                   category: "Financial institution account",
-                  primary: 305,
-                  secondary: 200,
+                  primary: 0.27,
+                  secondary: 0.46,
                 },
                 {
                   category: "Mobile money account",
-                  primary: 237,
-                  secondary: 120,
+                  primary: 0.42,
+                  secondary: 0.63,
                 },
                 {
                   category: "Made or received a digital payment",
-                  primary: 73,
-                  secondary: 190,
+                  primary: 0.5,
+                  secondary: 0.73,
                 },
-                { category: "Saved any money", primary: 209, secondary: 130 },
+                { category: "Saved any money", primary: 0.63, secondary: 0.77 },
                 {
                   category: "Borrowed any money",
-                  primary: 214,
-                  secondary: 140,
+                  primary: 0.73,
+                  secondary: 0.77,
                 },
               ]}
             />

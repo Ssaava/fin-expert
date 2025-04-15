@@ -82,18 +82,8 @@ export function IncomeGroupComparison({
               content={<ChartTooltipContent indicator="dashed" />}
             />
             <Legend verticalAlign="top" layout="vertical" />
-            <Bar
-              dataKey="poorest"
-              fill="#0000ff"
-              radius={4}
-              name="Poorest 40%"
-            />
-            <Bar
-              dataKey="richest"
-              fill="#FFA500"
-              radius={4}
-              name="Richest 60%"
-            />
+            <Bar dataKey="poorest" fill="#0000ff" name="Poorest 40%" />
+            <Bar dataKey="richest" fill="#FFA500" name="Richest 60%" />
           </BarChart>
         </ChartContainer>
       </CardContent>
