@@ -1,11 +1,122 @@
-# React + TypeScript + Vite
+# FinXpert - Financial Expert Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + TypeScript + Vite application for financial insights and analysis.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Modern React 19 with TypeScript
+- Vite for fast development and building
+- TailwindCSS for styling
+- Financial dashboard with interactive charts
+- User authentication and survey system
+- Responsive design with mobile support
+
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js 18 or higher
+- npm or yarn
+- Docker (for containerization)
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 🐳 Docker Deployment
+
+### Building and Running with Docker
+
+```bash
+# Build Docker image
+npm run docker:build
+
+# Run container
+npm run docker:run
+```
+
+The application will be available at `http://localhost:3000`
+
+### Using Docker Compose
+
+```bash
+# Start with docker-compose
+npm run docker:compose
+
+# Stop containers
+npm run docker:compose:down
+```
+
+### Push to Docker Hub
+
+1. **Login to Docker Hub:**
+   ```bash
+   docker login
+   ```
+
+2. **Use the deployment script:**
+   ```bash
+   ./deploy.sh [tag]
+   ```
+
+3. **Or manually:**
+   ```bash
+   # Build image
+   docker build -t finxpert-app .
+   
+   # Tag for Docker Hub (replace 'yourusername' with your Docker Hub username)
+   docker tag finxpert-app yourusername/finxpert-app:latest
+   
+   # Push to Docker Hub
+   docker push yourusername/finxpert-app:latest
+   ```
+
+### Pull and Run from Docker Hub
+
+```bash
+# Pull from Docker Hub
+docker pull yourusername/finxpert-app:latest
+
+# Run the container
+docker run -p 3000:80 yourusername/finxpert-app:latest
+```
+
+## 📁 Project Structure
+
+```
+fin-expert/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── pages/         # Application pages
+│   ├── hooks/         # Custom React hooks
+│   ├── layouts/       # Page layouts
+│   ├── store/         # State management
+│   └── assets/        # Static assets
+├── public/            # Public assets
+├── Dockerfile         # Docker configuration
+├── docker-compose.yml # Docker Compose configuration
+└── deploy.sh         # Deployment script
+```
+
+## 🔧 Configuration Files
+
+- `Dockerfile` - Multi-stage Docker build configuration
+- `nginx.conf` - Nginx configuration for production
+- `.dockerignore` - Files to ignore in Docker builds
+- `docker-compose.yml` - Local development with Docker
+- `deploy.sh` - Automated deployment script
 
 ## Expanding the ESLint configuration
 
